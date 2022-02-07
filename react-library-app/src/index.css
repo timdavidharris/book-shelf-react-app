@@ -1,0 +1,48 @@
+body {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+  max-width: 12em;
+  margin: 0 auto;
+}
+
+button {
+  margin-top: 1em;
+  border-radius: 5px;
+}
+
+h1 {
+  padding-top: 1.5em;
+}
+
+#toggle-btn {
+  text-align: center;
+  max-width: 14em;
+  margin: 0 auto;
+}
+
+#book-parent-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#book-child-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 1em 1em 1em;
+  margin: .5em .5em .5em .5em;
+  border-style: inset;
+  max-height: 8em;
+  max-width: 16em;
+  border-radius: 10px;
+}
+
+#form-and-card-div {
+  display: flex;
+  flex-direction: column;
+}
