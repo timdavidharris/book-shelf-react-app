@@ -6,10 +6,10 @@ class App extends React.Component {
     return(
       <div>
         <h1>
-          Library
+          Book Shelf
         </h1>
         <h2>
-          Books in Your Library
+          Books on Your Shelf
         </h2>
         <section id='book-cards'>
           <Form />
