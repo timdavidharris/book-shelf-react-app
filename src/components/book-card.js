@@ -57,11 +57,11 @@ class BookCard extends React.Component {
                 <button onClick={this.updateReadStatus}>
                     Change Read Status
                 </button>
-                <button onClick={this.editBook}>
-                    Edit Book
-                </button>
                 <button data-key={this.state.book.id} onClick={this.deleteBook}>
                     Remove Book
+                </button>
+                <button onClick={this.editBook}>
+                    Edit Book
                 </button>
                 {this.state.hideEdit === true ? null : 
                     <form id='add-a-book-form' onSubmit={this.handleSubmit}>
