@@ -44,7 +44,7 @@ class BookCard extends React.Component {
     }
 
     toggleEditFormDisplay = () => {
-        this.state.hideEditForm === true ? this.setState({hideEditForm: false}) : this.setState({hideEditForm: true});
+        this.state.hideEditForm === true ? this.setState({ hideEditForm: false }) : this.setState({ hideEditForm: true });
     }
 
     render() {
@@ -87,7 +87,7 @@ class BookCard extends React.Component {
                     />
                     </label>
                     <button data-key={this.state.id} onClick={this.deleteBook}>
-                    Remove Book
+                    DELETE BOOK
                     </button>
                     <br />
                     <button type='submit'>
