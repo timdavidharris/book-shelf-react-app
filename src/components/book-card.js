@@ -8,13 +8,7 @@ class BookCard extends React.Component {
             bookAuthor: props.book.author,
             bookPages: props.book.pages,
             isBookRead: props.book.bookRead,
-            book: {
-                title: props.book.title,
-                author: props.book.author,
-                pages: props.book.pages,
-                bookRead: props.book.bookRead,
-                id: props.book.id,
-            },
+            id: props.book.id,
             removeBook: props.removeBook,
             hideEditForm: true,
         }
@@ -25,23 +19,17 @@ class BookCard extends React.Component {
     }
 
     deleteBook = (e) => {
-        return this.state.removeBook(e);
+        if (window.confirm(`Click "OK" if you want to delete ${this.state.bookTitle} from your shelf`)) {
+            return this.state.removeBook(e);
+        }
     }
 
     handleChange = (e) => {
         const value = e.target.value;
         const name = e.target.name;
-        console.log(name, value);
 
         this.setState({
             [name]: value,
-            book: {
-                title: this.state.bookTitle,
-                author: this.state.bookAuthor,
-                pages: this.state.bookPages,
-                bookRead: this.state.isBookRead,
-                id: this.state.book.id,
-            },
         });
     }
 
@@ -51,26 +39,10 @@ class BookCard extends React.Component {
     }
 
     updateReadStatus = () => {
-        if (this.state.book.bookRead === "read") {
-            this.setState({ 
-                book: { 
-                    title: this.state.book.title,
-                    author: this.state.book.author,
-                    pages: this.state.book.pages,
-                    bookRead: "unread", 
-                    id: this.state.book.id,
-                } 
-            })
+        if (this.state.isBookRead === "read") {
+            this.setState({ isBookRead: "unread" })
         } else {
-            this.setState({ 
-                book: { 
-                    title: this.state.book.title,
-                    author: this.state.book.author,
-                    pages: this.state.book.pages,
-                    bookRead: "read", 
-                    id: this.state.book.id,
-                } 
-            })
+            this.setState({ isBookRead: "read" })
         }
     }
 
@@ -117,7 +89,7 @@ class BookCard extends React.Component {
                         onChange={this.handleChange}
                     />
                     </label>
-                    <button data-key={this.state.book.id} onClick={this.deleteBook}>
+                    <button data-key={this.state.id} onClick={this.deleteBook}>
                     Remove Book
                     </button>
                     <br />
