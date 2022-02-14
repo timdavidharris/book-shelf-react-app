@@ -16,6 +16,7 @@ class BookCard extends React.Component {
         this.deleteBook = this.deleteBook.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggleEditFormDisplay = this.toggleEditFormDisplay.bind(this);
     }
 
     deleteBook = (e) => {
@@ -39,11 +40,7 @@ class BookCard extends React.Component {
     }
 
     updateReadStatus = () => {
-        if (this.state.isBookRead === "read") {
-            this.setState({ isBookRead: "unread" })
-        } else {
-            this.setState({ isBookRead: "read" })
-        }
+        this.state.isBookRead === "read" ? this.setState({ isBookRead: "unread" }) : this.setState({ isBookRead: "read" });
     }
 
     toggleEditFormDisplay = () => {
