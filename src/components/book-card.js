@@ -4,6 +4,10 @@ class BookCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            bookTitle: props.book.title,
+            bookAuthor: props.book.author,
+            bookPages: props.book.pages,
+            isBookRead: props.book.bookRead,
             book: {
                 title: props.book.title,
                 author: props.book.author,
@@ -12,14 +16,38 @@ class BookCard extends React.Component {
                 id: props.book.id,
             },
             removeBook: props.removeBook,
-            hideEdit: true,
+            hideEditForm: true,
         }
         this.updateReadStatus = this.updateReadStatus.bind(this);
         this.deleteBook = this.deleteBook.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     deleteBook = (e) => {
         return this.state.removeBook(e);
+    }
+
+    handleChange = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        console.log(name, value);
+
+        this.setState({
+            [name]: value,
+            book: {
+                title: this.state.bookTitle,
+                author: this.state.bookAuthor,
+                pages: this.state.bookPages,
+                bookRead: this.state.isBookRead,
+                id: this.state.book.id,
+            },
+        });
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.toggleEditFormDisplay();
     }
 
     updateReadStatus = () => {
@@ -46,48 +74,29 @@ class BookCard extends React.Component {
         }
     }
 
-    editBook = () => {
-        this.state.hideEdit === true ? this.setState({hideEdit: false}) : this.setState({hideEdit: true});
+    toggleEditFormDisplay = () => {
+        this.state.hideEditForm === true ? this.setState({hideEditForm: false}) : this.setState({hideEditForm: true});
     }
 
     render() {
         return (
             <div id='book-child-div'>
-                {`${this.state.book.title} by ${this.state.book.author} has ${this.state.book.pages} pages and is ${this.state.book.bookRead}`}
+                {`${this.state.bookTitle} by ${this.state.bookAuthor} has ${this.state.bookPages} pages and is ${this.state.isBookRead}`}
                 <button onClick={this.updateReadStatus}>
                     Change Read Status
                 </button>
-                <button data-key={this.state.book.id} onClick={this.deleteBook}>
-                    Remove Book
-                </button>
-                <button onClick={this.editBook}>
+                <button onClick={this.toggleEditFormDisplay}>
                     Edit Book
                 </button>
-                {this.state.hideEdit === true ? null : 
+                {this.state.hideEditForm === true ? null : 
                     <form id='add-a-book-form' onSubmit={this.handleSubmit}>
-                    <label>
-                        This book is:
-                        <br />
-                        <select 
-                            name="isBookRead"
-                            value={this.state.book.bookRead}
-                            onChange={this.handleChange}
-                            required
-                        >
-                        <option value="">--select one--</option>
-                        <option value={"read"}>read</option>
-                        <option value={"unread"}>unread</option>
-                        </select>
-                    </label>
-                    <br />
                     <label>
                         Book Title
                     <input 
                         name="bookTitle"
                         type="text"
-                        value={this.state.book.title}
+                        value={this.state.bookTitle}
                         onChange={this.handleChange}
-                        required
                     />
                     </label>
                     <label>
@@ -95,9 +104,8 @@ class BookCard extends React.Component {
                     <input
                         name="bookAuthor"
                         type="text"
-                        value={this.state.book.author}
+                        value={this.state.bookAuthor}
                         onChange={this.handleChange}
-                        required
                     />
                     </label>
                     <label>
@@ -105,13 +113,16 @@ class BookCard extends React.Component {
                     <input
                         name="bookPages"
                         type="number"
-                        value={this.state.book.pages}
+                        value={this.state.bookPages}
                         onChange={this.handleChange}
-                        required
                     />
                     </label>
+                    <button data-key={this.state.book.id} onClick={this.deleteBook}>
+                    Remove Book
+                    </button>
+                    <br />
                     <button type='submit'>
-                        ADD
+                        EDIT
                     </button>
                 </form>
                 }
