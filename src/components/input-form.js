@@ -27,14 +27,14 @@ class Form extends React.Component {
     }
 
     setExampleBook_Dune = () => {
-            let book = {
-                title: 'Dune',
-                author: 'Frank Herbert',
-                pages: '658',
-                bookRead: 'read',
-                id: uniqid(),
-            }
-            return book;
+        let book = {
+            title: 'Dune',
+            author: 'Frank Herbert',
+            pages: '658',
+            bookRead: 'read',
+            id: uniqid(),
+        }
+        return book;
     }
 
     setExampleBook_1984 = () => {
@@ -72,11 +72,7 @@ class Form extends React.Component {
     }
 
     toggleFormDisplay = () => {
-        if (this.state.displayForm === true) {
-            this.setState({displayForm: false});
-        } else {
-            this.setState({displayForm: true});
-        }
+        this.state.displayForm === true ? this.setState({ displayForm: false }) : this.setState({ displayForm: true });
     }
 
     handleSubmit = (e) => {
