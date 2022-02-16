@@ -52,14 +52,18 @@ class Form extends React.Component {
         const value = e.target.value;
         const name = e.target.name;
 
+        this.setState({ [name]: value });
+        this.setBookObj();
+    }
+
+    setBookObj = () => {
         this.setState({
-            [name]: value,
             book: {
                 title: this.state.bookTitle,
                 author: this.state.bookAuthor,
                 pages: this.state.bookPages,
                 bookRead: this.state.isBookRead,
-                id: this.state.book.id,
+                id: uniqid(),
             },
         });
     }
@@ -75,6 +79,10 @@ class Form extends React.Component {
         this.state.displayForm === true ? this.setState({ displayForm: false }) : this.setState({ displayForm: true });
     }
 
+    consoleLogLibrary = () => {
+        console.log(this.state.library);
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({
@@ -83,19 +91,16 @@ class Form extends React.Component {
             bookAuthor: '',
             bookPages: '',
             isBookRead: 'read',
-            book: {
-                title: '',
-                author: '',
-                pages: '',
-                bookRead: '',
-                id: uniqid(),
-            },
         });
+        return this.toggleFormDisplay();
     }
 
     render() {
         return (
             <div id='form-and-card-div'>
+            <button onClick={this.consoleLogLibrary}>
+                console.log library
+            </button>
                 <div id='book-parent-div'>
                     {this.state.library.map((book) => {
                         return <BookCard key={book.id} book={book} removeBook={this.removeBook}/>;
