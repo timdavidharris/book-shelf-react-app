@@ -69,21 +69,16 @@ class Form extends React.Component {
         });
     }
 
-    removeBook = (e) => {
-        // Use the book element instead of the dataset
-        let bookByID = e.target.dataset.key
+    removeBook = (book) => {
+        let deleteMe = book;
         this.setState({
-            library: this.state.library.filter(book => book.id !== bookByID),
+            library: this.state.library.filter(book => book.id !== deleteMe.id),
         })
     }
 
     toggleFormDisplay = () => {
         this.state.displayForm === true ? this.setState({ displayForm: false }) : this.setState({ displayForm: true });
     }
-
-    // consoleLogLibrary = () => {
-    //     console.log(this.state.library);
-    // }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -100,10 +95,13 @@ class Form extends React.Component {
     updateLibraryArray = (book) => {
         let update = book;
         let bookIndex = this.state.library.findIndex(book => book.id === update.id);
-        // Update array without splice
         this.state.library.splice(bookIndex, 1, update);
         this.setState({ library: this.state.library });
     }
+
+    // consoleLogLibrary = () => {
+    //     console.log(this.state.library);
+    // }
 
     render() {
         return (

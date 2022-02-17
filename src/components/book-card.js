@@ -28,9 +28,9 @@ class BookCard extends React.Component {
         this.toggleEditFormDisplay = this.toggleEditFormDisplay.bind(this);
     }
 
-    deleteBook = (e) => {
+    deleteBook = () => {
         if (window.confirm(`Click "OK" if you want to delete ${this.state.bookTitle} from your shelf`)) {
-            return this.state.removeBook(e);
+            return this.state.removeBook(this.state.book);
         }
     }
 
