@@ -70,6 +70,7 @@ class Form extends React.Component {
     }
 
     removeBook = (e) => {
+        // Use the book element instead of the dataset
         let bookByID = e.target.dataset.key
         this.setState({
             library: this.state.library.filter(book => book.id !== bookByID),
@@ -99,6 +100,7 @@ class Form extends React.Component {
     updateLibraryArray = (book) => {
         let update = book;
         let bookIndex = this.state.library.findIndex(book => book.id === update.id);
+        // Update array without splice
         this.state.library.splice(bookIndex, 1, update);
         this.setState({ library: this.state.library });
     }
