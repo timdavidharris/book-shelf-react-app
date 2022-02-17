@@ -80,9 +80,9 @@ class Form extends React.Component {
         this.state.displayForm === true ? this.setState({ displayForm: false }) : this.setState({ displayForm: true });
     }
 
-    consoleLogLibrary = () => {
-        console.log(this.state.library);
-    }
+    // consoleLogLibrary = () => {
+    //     console.log(this.state.library);
+    // }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -106,9 +106,9 @@ class Form extends React.Component {
     render() {
         return (
             <div id='form-and-card-div'>
-            <button onClick={this.consoleLogLibrary}>
+            {/* <button onClick={this.consoleLogLibrary}>
                 console.log library
-            </button>
+            </button> */}
                 <div id='book-parent-div'>
                     {this.state.library.map((book) => {
                         return <BookCard key={book.id} book={book} removeBook={this.removeBook} updateLibraryArray={this.updateLibraryArray}/>;
