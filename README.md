@@ -11,3 +11,4 @@ This web app is built with React
 * Add a new book
 * Delete a book
 * Change the read status of a book
+* Edit a book
