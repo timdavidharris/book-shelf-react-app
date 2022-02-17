@@ -95,6 +95,12 @@ class Form extends React.Component {
         return this.toggleFormDisplay();
     }
 
+    updateLibraryArray = (book) => {
+        let update = book;
+        let bookIndex = this.state.library.indexOf(book);
+        this.setState({ library: this.state.library.splice(bookIndex, 1, update) });
+    }
+
     render() {
         return (
             <div id='form-and-card-div'>
@@ -103,7 +109,7 @@ class Form extends React.Component {
             </button>
                 <div id='book-parent-div'>
                     {this.state.library.map((book) => {
-                        return <BookCard key={book.id} book={book} removeBook={this.removeBook}/>;
+                        return <BookCard key={book.id} book={book} removeBook={this.removeBook} updateLibraryArray={this.updateLibraryArray}/>;
                     })}
                 </div>
                 <button id='toggle-btn' onClick={this.toggleFormDisplay}>
