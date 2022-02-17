@@ -24,6 +24,7 @@ class Form extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.removeBook = this.removeBook.bind(this);
         this.toggleFormDisplay = this.toggleFormDisplay.bind(this);
+        this.updateLibraryArray = this.updateLibraryArray.bind(this);
     }
 
     setExampleBook_Dune = () => {
@@ -97,8 +98,9 @@ class Form extends React.Component {
 
     updateLibraryArray = (book) => {
         let update = book;
-        let bookIndex = this.state.library.indexOf(book);
-        this.setState({ library: this.state.library.splice(bookIndex, 1, update) });
+        let bookIndex = this.state.library.findIndex(book => book.id === update.id);
+        this.state.library.splice(bookIndex, 1, update);
+        this.setState({ library: this.state.library });
     }
 
     render() {

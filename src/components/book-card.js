@@ -59,12 +59,13 @@ class BookCard extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.toggleEditFormDisplay();
-        console.log(this.state.book);
         this.state.updateLibraryArray(this.state.book);
     }
 
     updateReadStatus = () => {
         this.state.isBookRead === "read" ? this.setState({ isBookRead: "unread" }) : this.setState({ isBookRead: "read" });
+        this.setBookObj();
+        this.state.updateLibraryArray(this.state.book);
     }
 
     toggleEditFormDisplay = () => {
