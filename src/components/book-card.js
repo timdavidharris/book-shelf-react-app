@@ -12,19 +12,12 @@ class BookCard extends React.Component {
             removeBook: props.removeBook,
             updateLibraryArray: props.updateLibraryArray,
             hideEditForm: true,
-            book: {
-                title: props.book.title,
-                author: props.book.author,
-                pages: props.book.pages,
-                bookRead: props.book.bookRead,
-                id: props.book.id,
-            }
         }
         this.updateReadStatus = this.updateReadStatus.bind(this);
         this.deleteBook = this.deleteBook.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.setBookObj = this.setBookObj.bind(this);
+        this.bookObj = this.bookObj.bind(this);
         this.toggleEditFormDisplay = this.toggleEditFormDisplay.bind(this);
     }
 
@@ -43,28 +36,27 @@ class BookCard extends React.Component {
         });
     }
 
-    setBookObj = () => {
-        this.setState({
-            book: {
-                title: this.state.bookTitle,
-                author: this.state.bookAuthor,
-                pages: this.state.bookPages,
-                bookRead: this.state.isBookRead,
-                id: this.state.id,
-            },
-        });
+    bookObj = () => {
+        let book = {
+            title: this.state.bookTitle,
+            author: this.state.bookAuthor,
+            pages: this.state.bookPages,
+            bookRead: this.state.isBookRead,
+            id: this.state.id,
+        }
+        return book;
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.toggleEditFormDisplay();
-        this.state.updateLibraryArray(this.state.book);
+        this.state.updateLibraryArray(this.bookObj());
     }
 
     updateReadStatus = () => {
         this.state.isBookRead === "read" ? this.setState({ isBookRead: "unread" }) : this.setState({ isBookRead: "read" });
         this.setBookObj();
-        this.state.updateLibraryArray(this.state.book);
+        this.state.updateLibraryArray(this.bookObj());
     }
 
     toggleEditFormDisplay = () => {
