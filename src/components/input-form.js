@@ -6,7 +6,7 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            library: this.checkLocalStorage(),
+            library: localStorage.getItem('libraryArray') === null ? [this.setExampleBook_Dune(), this.setExampleBook_1984()] : JSON.parse(localStorage.getItem('libraryArray')),
             displayForm: false,
             bookTitle: '',
             bookAuthor: '',
@@ -25,17 +25,6 @@ class Form extends React.Component {
         this.removeBook = this.removeBook.bind(this);
         this.toggleFormDisplay = this.toggleFormDisplay.bind(this);
         this.updateLibraryArray = this.updateLibraryArray.bind(this);
-    }
-
-    checkLocalStorage = () => {
-        if ((localStorage.getItem('libraryArray') === null) ||
-        (localStorage.getItem('libraryArray') === undefined)) {
-            this.setState({ library: [this.setExampleBook_Dune(), this.setExampleBook_1984()] });
-            localStorage.setItem('libraryArray', this.state.library);
-        } else {
-            let libraryArray = JSON.parse(localStorage.getItem('libraryArray'));
-            this.setState({ library: libraryArray })
-        }
     }
 
     setExampleBook_Dune = () => {
