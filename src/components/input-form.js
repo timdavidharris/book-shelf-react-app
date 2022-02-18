@@ -12,13 +12,7 @@ class Form extends React.Component {
             bookAuthor: '',
             bookPages: '',
             isBookRead: 'read',
-            book: {
-                title: '',
-                author: '',
-                pages: '',
-                bookRead: '',
-                id: uniqid(),
-            },
+            id: uniqid(),
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,19 +48,17 @@ class Form extends React.Component {
         const name = e.target.name;
 
         this.setState({ [name]: value });
-        this.setBookObj();
     }
 
-    setBookObj = () => {
-        this.setState({
-            book: {
+    bookObj = () => {
+        let book = {
                 title: this.state.bookTitle,
                 author: this.state.bookAuthor,
                 pages: this.state.bookPages,
                 bookRead: this.state.isBookRead,
-                id: uniqid(),
-            },
-        });
+                id: this.state.id,
+            }
+        return book;
     }
 
     removeBook = (book) => {
@@ -83,7 +75,7 @@ class Form extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({
-            library: this.state.library.concat(this.state.book),
+            library: this.state.library.concat(this.bookObj()),
             bookTitle: '',
             bookAuthor: '',
             bookPages: '',
