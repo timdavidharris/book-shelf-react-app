@@ -23,7 +23,7 @@ class BookCard extends React.Component {
 
     deleteBook = () => {
         if (window.confirm(`Click "OK" if you want to delete ${this.state.bookTitle} from your shelf`)) {
-            return this.state.removeBook(this.state.book);
+            return this.state.removeBook(this.bookObj());
         }
     }
 
