@@ -30,17 +30,13 @@ class Form extends React.Component {
     checkLocalStorage = () => {
         if ((localStorage.getItem('libraryArray') === null) ||
         (localStorage.getItem('libraryArray') === undefined)) {
-            return this.setState({ library: [this.setExampleBook_Dune(), this.setExampleBook_1984()] })
+            this.setState({ library: [this.setExampleBook_Dune(), this.setExampleBook_1984()] });
+            localStorage.setItem('libraryArray', this.state.library);
         } else {
             let libraryArray = JSON.parse(localStorage.getItem('libraryArray'));
-            return this.setState({ library: libraryArray })
+            this.setState({ library: libraryArray })
         }
     }
-
-// export function fetch(inputArray, inputKey) {
-//     inputArray = JSON.parse(localStorage.getItem(inputKey));
-//     return inputArray;
-// }
 
     setExampleBook_Dune = () => {
         let book = {
