@@ -104,16 +104,9 @@ class Form extends React.Component {
         localStorage.setItem('libraryArray', JSON.stringify(this.state.library));
     }
 
-    // consoleLogLibrary = () => {
-    //     console.log(this.state.library);
-    // }
-
     render() {
         return (
             <div id='form-and-card-div'>
-            {/* <button onClick={this.consoleLogLibrary}>
-                console.log library
-            </button> */}
                 <div id='book-parent-div'>
                     {this.state.library === undefined ? null : this.state.library.map((book) => {
                         return <BookCard key={book.id} book={book} removeBook={this.removeBook} updateLibraryArray={this.updateLibraryArray}/>;

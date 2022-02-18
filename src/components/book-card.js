@@ -41,7 +41,6 @@ class BookCard extends React.Component {
         this.setState({
             [name]: value,
         });
-        this.setBookObj();
     }
 
     setBookObj = () => {
