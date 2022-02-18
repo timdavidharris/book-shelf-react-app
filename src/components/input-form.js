@@ -6,7 +6,7 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            library: localStorage.getItem('libraryArray') === null ? [this.setExampleBook_Dune(), this.setExampleBook_1984()] : JSON.parse(localStorage.getItem('libraryArray')),
+            library: localStorage.getItem('libraryArray') === null || localStorage.getItem('libraryArray') === undefined ? [this.setExampleBook_Dune(), this.setExampleBook_1984()] && this.updateLocalStorage() : JSON.parse(localStorage.getItem('libraryArray')),
             displayForm: false,
             bookTitle: '',
             bookAuthor: '',
@@ -97,6 +97,11 @@ class Form extends React.Component {
         let bookIndex = this.state.library.findIndex(book => book.id === update.id);
         this.state.library.splice(bookIndex, 1, update);
         this.setState({ library: this.state.library });
+        this.updateLocalStorage();
+    }
+
+    updateLocalStorage = () => {
+        return localStorage.getItem('libraryArray') === null || localStorage.getItem('libraryArray') === undefined ? null : localStorage.setItem('libraryArray', JSON.stringify(this.state.library));
     }
 
     // consoleLogLibrary = () => {
