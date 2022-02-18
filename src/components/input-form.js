@@ -66,6 +66,7 @@ class Form extends React.Component {
         this.setState({
             library: this.state.library.filter(book => book.id !== deleteMe.id),
         })
+        this.updateLocalStorage();
     }
 
     toggleFormDisplay = () => {
