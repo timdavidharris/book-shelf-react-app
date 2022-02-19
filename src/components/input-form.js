@@ -62,10 +62,8 @@ class Form extends React.Component {
     }
 
     removeBook = (book) => {
-        let deleteMe = book;
-        this.setState({
-            library: this.state.library.filter(book => book.id !== deleteMe.id),
-        })
+        let updatedArray = this.state.library.filter(item => item.id !== book.id)
+        this.setState({ library: updatedArray })
         this.updateLocalStorage();
     }
 

@@ -82,9 +82,13 @@ class BookCard extends React.Component {
                     DELETE BOOK
                     </button>
                     :
-                    <button onClick={this.deleteBook}>
-                        CONFIRM DELETE BOOK
-                    </button>}
+                    <><button onClick={this.deleteBook}>
+                        YES, DELETE BOOK
+                    </button>
+                    <button onClick={this.toggleDeleteConfirm}>
+                        NO, do NOT delete Book
+                    </button></>
+                    }
                 {this.state.hideEditForm === true ? null : 
                     <form id='add-a-book-form' onSubmit={this.handleSubmit}>
                     <label>
