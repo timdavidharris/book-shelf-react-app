@@ -64,7 +64,7 @@ class Form extends React.Component {
     removeBook = (book) => {
         let updatedArray = this.state.library.filter(item => item.id !== book.id)
         this.setState({ library: updatedArray })
-        this.updateLocalStorage();
+        this.updateLocalStorage(updatedArray);
     }
 
     toggleFormDisplay = () => {
@@ -88,11 +88,11 @@ class Form extends React.Component {
         let bookIndex = this.state.library.findIndex(book => book.id === update.id);
         this.state.library.splice(bookIndex, 1, update);
         this.setState({ library: this.state.library });
-        this.updateLocalStorage();
+        this.updateLocalStorage(this.state.library);
     }
 
-    updateLocalStorage = () => {
-        localStorage.setItem('libraryArray', JSON.stringify(this.state.library));
+    updateLocalStorage = (libraryArray) => {
+        localStorage.setItem('libraryArray', JSON.stringify(libraryArray));
     }
 
     render() {
