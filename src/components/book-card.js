@@ -55,7 +55,6 @@ class BookCard extends React.Component {
 
     updateReadStatus = () => {
         this.state.isBookRead === "read" ? this.setState({ isBookRead: "unread" }) : this.setState({ isBookRead: "read" });
-        this.setBookObj();
         this.state.updateLibraryArray(this.bookObj());
     }
 
