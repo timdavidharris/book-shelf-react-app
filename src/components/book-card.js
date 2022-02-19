@@ -77,6 +77,14 @@ class BookCard extends React.Component {
                 <button onClick={this.toggleEditFormDisplay}>
                     Edit Book
                 </button>
+                { this.state.hideDeleteConfirm === true ? 
+                    <button onClick={this.toggleDeleteConfirm}>
+                    DELETE BOOK
+                    </button>
+                    :
+                    <button onClick={this.deleteBook}>
+                        CONFIRM DELETE BOOK
+                    </button>}
                 {this.state.hideEditForm === true ? null : 
                     <form id='add-a-book-form' onSubmit={this.handleSubmit}>
                     <label>
@@ -106,14 +114,6 @@ class BookCard extends React.Component {
                         onChange={this.handleChange}
                     />
                     </label>
-                    { this.state.hideDeleteConfirm === true ? 
-                    <button onClick={this.toggleDeleteConfirm}>
-                    DELETE BOOK
-                    </button>
-                    :
-                    <button onClick={this.deleteBook}>
-                        CONFIRM DELETE BOOK
-                    </button>}
                     <br />
                     <button type='submit'>
                         EDIT
