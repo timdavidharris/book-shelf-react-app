@@ -102,7 +102,7 @@ class BookCard extends React.Component {
                         onChange={this.handleChange}
                     />
                     </label>
-                    <button data-key={this.state.id} onClick={this.deleteBook}>
+                    <button onClick={this.deleteBook}>
                     DELETE BOOK
                     </button>
                     <br />
