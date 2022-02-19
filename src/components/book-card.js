@@ -12,6 +12,7 @@ class BookCard extends React.Component {
             removeBook: props.removeBook,
             updateLibraryArray: props.updateLibraryArray,
             hideEditForm: true,
+            hideDeleteConfirm: true,
         }
         this.updateReadStatus = this.updateReadStatus.bind(this);
         this.deleteBook = this.deleteBook.bind(this);
@@ -22,9 +23,8 @@ class BookCard extends React.Component {
     }
 
     deleteBook = () => {
-        if (window.confirm(`Click "OK" if you want to delete ${this.state.bookTitle} from your shelf`)) {
-            return this.state.removeBook(this.bookObj());
-        }
+        this.state.removeBook(this.bookObj());
+        this.toggleDeleteConfirm();
     }
 
     handleChange = (e) => {
@@ -61,6 +61,10 @@ class BookCard extends React.Component {
 
     toggleEditFormDisplay = () => {
         this.state.hideEditForm === true ? this.setState({ hideEditForm: false }) : this.setState({ hideEditForm: true });
+    }
+
+    toggleDeleteConfirm = () => {
+        this.state.hideDeleteConfirm === true ? this.setState({ hideDeleteConfirm: false }) : this.setState({ hideDeleteConfirm: true })
     }
 
     render() {
@@ -102,9 +106,14 @@ class BookCard extends React.Component {
                         onChange={this.handleChange}
                     />
                     </label>
-                    <button onClick={this.deleteBook}>
+                    { this.state.hideDeleteConfirm === true ? 
+                    <button onClick={this.toggleDeleteConfirm}>
                     DELETE BOOK
                     </button>
+                    :
+                    <button onClick={this.deleteBook}>
+                        CONFIRM DELETE BOOK
+                    </button>}
                     <br />
                     <button type='submit'>
                         EDIT
