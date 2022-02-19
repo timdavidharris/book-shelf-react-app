@@ -55,9 +55,11 @@ class BookCard extends React.Component {
 
     updateReadStatus = () => {
         if (this.state.isBookRead === "read") {
+            // eslint-disable-next-line
             this.state.isBookRead = "unread";
             this.setState({ isBookRead: "unread" })
         } else {
+            // eslint-disable-next-line
             this.state.isBookRead = "read"
             this.setState({ isBookRead: "read" })
         }
