@@ -12,3 +12,4 @@ This web app is built with React
 * Delete a book
 * Change the read status of a book
 * Edit a book
+* Local storage
