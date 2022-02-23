@@ -1,12 +1,13 @@
-# Built With React
+# React
 
 This web app is built with React
 
 ## Netlify Link
 
-[Website Link Here](https://timsbooks.netlify.app/)
+This web app is run with netlify
+[Click Here](https://timsbooks.netlify.app/) to see the site
 
-### Functionality
+## Functionality
 
 * Add a new book
 * Delete a book
