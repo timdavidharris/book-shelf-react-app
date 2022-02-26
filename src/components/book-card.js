@@ -102,8 +102,10 @@ class BookCard extends React.Component {
                         </div>
                     </div>
                     }
-                {this.state.hideEditForm === true ? null : 
-                    <form id='add-a-book-form' onSubmit={this.handleSubmit}>
+                {this.state.hideEditForm === true ? null :
+                    <div className='modal'>
+                    <span className='close-btn' onClick={this.toggleEditFormDisplay}>&times;</span>
+                    <form className='modal-content' id='add-a-book-form' onSubmit={this.handleSubmit}>
                     <label>
                         Book Title
                     <input 
@@ -136,6 +138,7 @@ class BookCard extends React.Component {
                         EDIT
                     </button>
                 </form>
+                </div>
                 }
             </div>
         )
