@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './components/input-form';
+import GitHubLink from './components/github-link';
 
 class App extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class App extends React.Component {
         </h2>
         <section id='book-cards'>
           <Form />
+          <GitHubLink />
         </section>
       </div>
     )
