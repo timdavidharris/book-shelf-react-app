@@ -14,4 +14,5 @@ This web app is hosted with netlify
 * Delete a book
 * Change the read status of a book
 * Edit a book
+* Forms and confirmations as modals
 * Local storage
