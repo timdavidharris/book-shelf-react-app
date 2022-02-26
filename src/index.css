@@ -47,10 +47,9 @@ h1 {
 }
 
 #github {
-  position: fixed;
   padding-top: 2em;
   margin-top: 2em;
-  bottom: 10px;
+  bottom: auto;
   width: 100%;
 }
 
