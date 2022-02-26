@@ -104,10 +104,12 @@ class Form extends React.Component {
                     })}
                 </div>
                 <button id='toggle-btn' onClick={this.toggleFormDisplay}>
-                    Toggle Add A Book Form
+                    Add A Book
                 </button>
                 {this.state.displayForm === false ? null : 
-                <form id='add-a-book-form' onSubmit={this.handleSubmit}>
+                <div className='modal'>
+                <span className='close-btn' onClick={this.toggleFormDisplay}>&times;</span>
+                <form className='modal-content' id='add-a-book-form' onSubmit={this.handleSubmit}>
                     <label>
                         This book is:
                         <br />
@@ -157,6 +159,7 @@ class Form extends React.Component {
                         ADD
                     </button>
                 </form>
+                </div>
                 }
             </div>
         )
