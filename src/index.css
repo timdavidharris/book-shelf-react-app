@@ -73,7 +73,8 @@ h1 {
   background-color: white;
   padding: 20px; 
   margin: auto; 
-  width: 50%;  
+  width: 50%;
+  border-radius: 10px;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
