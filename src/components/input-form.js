@@ -1,6 +1,9 @@
 import React from 'react';
 import BookCard from './book-card';
 import uniqid from 'uniqid';
+import { getDatabase } from "firebase/database";
+
+const database = getDatabase();
 
 class Form extends React.Component {
     constructor(props) {
