@@ -76,7 +76,7 @@ class BookCard extends React.Component {
 
     render() {
         return (
-            <div id='book-child-div'>
+            <div className='book-child-div'>
                 {`${this.state.bookTitle} by ${this.state.bookAuthor} has ${this.state.bookPages} pages and is ${this.state.isBookRead}`}
                 <button onClick={this.updateReadStatus}>
                     Change Read Status
@@ -105,7 +105,7 @@ class BookCard extends React.Component {
                 {this.state.hideEditForm === true ? null :
                     <div className='modal'>
                     <span className='close-btn' onClick={this.toggleEditFormDisplay}>&times;</span>
-                    <form className='modal-content' id='add-a-book-form' onSubmit={this.handleSubmit}>
+                    <form className='modal-content add-a-book-form' onSubmit={this.handleSubmit}>
                     <label>
                         Book Title
                     <input 

@@ -487,20 +487,20 @@ h1 {
   padding-top: 1.5em;
 }
 
-#toggle-btn {
+.toggle-btn {
   text-align: center;
   max-width: 14em;
   margin: 0 auto;
 }
 
-#book-parent-div {
+.book-parent-div {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-#book-child-div {
+.book-child-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -511,7 +511,7 @@ h1 {
   border-radius: 10px;
 }
 
-#form-and-card-div {
+.form-and-card-div {
   display: flex;
   flex-direction: column;
 }
@@ -544,7 +544,7 @@ h1 {
   background-color: white;
   padding: 20px;
   margin: auto;
-  width: 50%;
+  width: 20%;
   border-radius: 10px;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;

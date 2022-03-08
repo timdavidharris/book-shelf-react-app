@@ -97,19 +97,19 @@ class Form extends React.Component {
 
     render() {
         return (
-            <div id='form-and-card-div'>
-                <div id='book-parent-div'>
+            <div className='form-and-card-div'>
+                <div className='book-parent-div'>
                     {this.state.library === undefined ? null : this.state.library.map((book) => {
                         return <BookCard key={book.id} book={book} removeBook={this.removeBook} updateLibraryArray={this.updateLibraryArray}/>;
                     })}
                 </div>
-                <button id='toggle-btn' onClick={this.toggleFormDisplay}>
+                <button className='toggle-btn' onClick={this.toggleFormDisplay}>
                     Add A Book
                 </button>
                 {this.state.displayForm === false ? null : 
                 <div className='modal'>
                 <span className='close-btn' onClick={this.toggleFormDisplay}>&times;</span>
-                <form className='modal-content' id='add-a-book-form' onSubmit={this.handleSubmit}>
+                <form className='modal-content add-a-book-form' onSubmit={this.handleSubmit}>
                     <label>
                         This book is:
                         <br />
