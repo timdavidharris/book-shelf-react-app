@@ -7,13 +7,16 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 function SupabaseComponent(props) {
     const library = props.library;
-    // let { data: test_table, error } = await supabase.from('test_table').select('data');
-    insertRow(library);
+    select().then(insertRow(library));
     return(null);
 }
 
+async function select() {
+    let { data: test_table, error } = await supabase.from('test_table').select('data');
+}
+
 async function insertRow(library) {
-    const { data, error } = await supabase.from('test_table').insert(library);
+    const { data: test_table, error } = await supabase.from('test_table').insert(library);
     return(null);
 }
 
