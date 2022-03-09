@@ -1,6 +1,7 @@
 import React from 'react';
 import BookCard from './book-card';
 import uniqid from 'uniqid';
+import SupabaseComponent from '../supabaseClient';
 
 class Form extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class Form extends React.Component {
             id: uniqid(),
         }
         return book;
-}
+    }
 
     handleChange = (e) => {
         const value = e.target.value;
@@ -98,6 +99,7 @@ class Form extends React.Component {
     render() {
         return (
             <div className='form-and-card-div'>
+            <SupabaseComponent library={this.state.library}/>
                 <div className='book-parent-div'>
                     {this.state.library === undefined ? null : this.state.library.map((book) => {
                         return <BookCard key={book.id} book={book} removeBook={this.removeBook} updateLibraryArray={this.updateLibraryArray}/>;
