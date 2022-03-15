@@ -3,7 +3,7 @@ import BookCard from './book-card';
 import uniqid from 'uniqid';
 import SupabaseComponent from '../supabaseClient';
 
-class Form extends React.Component {
+class NewBook extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -168,4 +168,4 @@ class Form extends React.Component {
     }
 }
 
-export default Form;
+export default NewBook;
