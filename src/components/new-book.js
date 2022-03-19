@@ -1,28 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookCard from './book-card';
 import uniqid from 'uniqid';
 import SupabaseComponent from '../supabaseClient';
 
-class NewBook extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            library: localStorage.getItem('libraryArray') === null ? [this.setExampleBook_Dune(), this.setExampleBook_1984()] : JSON.parse(localStorage.getItem('libraryArray')),
-            displayForm: false,
-            bookTitle: '',
-            bookAuthor: '',
-            bookPages: '',
-            isBookRead: 'read',
-            id: uniqid(),
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.removeBook = this.removeBook.bind(this);
-        this.toggleFormDisplay = this.toggleFormDisplay.bind(this);
-        this.updateLibraryArray = this.updateLibraryArray.bind(this);
-    }
+// For Reference:
+// https://medium.com/nerd-for-tech/how-to-build-forms-with-multiple-input-fields-using-react-hooks-677da2b851aa
 
-    setExampleBook_Dune = () => {
+export default function NewBook() {
+    const [book, setBook] = useState({title: "", author: "", pages: "", bookRead: "read", id: uniqid()});
+    const [formDisplay, setFormDisplay] = useState(false);
+    const [library, setLibrary] = useState([dune, nineteen84]);
+
+    dune = () => {
         let book = {
             title: 'Dune',
             author: 'Frank Herbert',
@@ -33,7 +22,7 @@ class NewBook extends React.Component {
         return book;
     }
 
-    setExampleBook_1984 = () => {
+    nineteen84 = () => {
         let book = {
             title: '1984',
             author: 'George Orwell',
@@ -45,10 +34,7 @@ class NewBook extends React.Component {
     }
 
     handleChange = (e) => {
-        const value = e.target.value;
-        const name = e.target.name;
-
-        this.setState({ [name]: value });
+        setBook({...book, [e.target.name]: e.target.value})
     }
 
     bookObj = () => {
@@ -63,109 +49,98 @@ class NewBook extends React.Component {
     }
 
     removeBook = (book) => {
-        let updatedArray = this.state.library.filter(item => item.id !== book.id)
-        this.setState({ library: updatedArray })
-        this.updateLocalStorage(updatedArray);
+        let updatedArray = library.filter(item => item.id !== book.id)
+        setLibrary(updatedArray);
+        updateLocalStorage(updatedArray);
     }
 
     toggleFormDisplay = () => {
-        this.state.displayForm === true ? this.setState({ displayForm: false }) : this.setState({ displayForm: true });
+        formDisplay === true ? setFormDisplay(false) : setFormDisplay(true);
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-            library: this.state.library.concat(this.bookObj()),
-            bookTitle: '',
-            bookAuthor: '',
-            bookPages: '',
-            isBookRead: 'read',
-        });
-        return this.toggleFormDisplay();
+        return toggleFormDisplay();
     }
 
     updateLibraryArray = (book) => {
         let update = book;
-        let bookIndex = this.state.library.findIndex(book => book.id === update.id);
-        this.state.library.splice(bookIndex, 1, update);
-        this.setState({ library: this.state.library });
-        this.updateLocalStorage(this.state.library);
+        let bookIndex = library.findIndex(book => book.id === update.id);
+        library.splice(bookIndex, 1, update);
+        setLibrary(library)
+        updateLocalStorage(library);
     }
 
     updateLocalStorage = (libraryArray) => {
         localStorage.setItem('libraryArray', JSON.stringify(libraryArray));
     }
 
-    render() {
-        return (
-            <div className='form-and-card-div'>
-            <SupabaseComponent library={this.state.library}/>
-                <div className='book-parent-div'>
-                    {this.state.library === undefined ? null : this.state.library.map((book) => {
-                        return <BookCard key={book.id} book={book} removeBook={this.removeBook} updateLibraryArray={this.updateLibraryArray}/>;
-                    })}
-                </div>
-                <button className='toggle-btn' onClick={this.toggleFormDisplay}>
-                    Add A Book
-                </button>
-                {this.state.displayForm === false ? null : 
-                <div className='modal'>
-                <span className='close-btn' onClick={this.toggleFormDisplay}>&times;</span>
-                <form className='modal-content add-a-book-form' onSubmit={this.handleSubmit}>
-                    <label>
-                        This book is:
-                        <br />
-                        <select 
-                            name="isBookRead"
-                            value={this.state.isBookRead}
-                            onChange={this.handleChange}
-                            required
-                        >
-                        <option value="">--select one--</option>
-                        <option value={"read"}>read</option>
-                        <option value={"unread"}>unread</option>
-                        </select>
-                    </label>
-                    <br />
-                    <label>
-                        Book Title
-                    <input 
-                        name="bookTitle"
-                        type="text"
-                        value={this.state.bookTitle}
-                        onChange={this.handleChange}
-                        required
-                    />
-                    </label>
-                    <label>
-                        Author
-                    <input
-                        name="bookAuthor"
-                        type="text"
-                        value={this.state.bookAuthor}
-                        onChange={this.handleChange}
-                        required
-                    />
-                    </label>
-                    <label>
-                        Number of Pages
-                    <input
-                        name="bookPages"
-                        type="number"
-                        value={this.state.bookPages}
-                        onChange={this.handleChange}
-                        required
-                    />
-                    </label>
-                    <button type='submit'>
-                        ADD
-                    </button>
-                </form>
-                </div>
-                }
+    render(
+        <div className='form-and-card-div'>
+        <SupabaseComponent library={library}/>
+            <div className='book-parent-div'>
+                {library === undefined ? null : library.map((book) => {
+                    return <BookCard key={book.id} book={book} removeBook={removeBook} updateLibraryArray={updateLibraryArray}/>;
+                })}
             </div>
-        )
-    }
+            <button className='toggle-btn' onClick={this.toggleFormDisplay}>
+                Add A Book
+            </button>
+            {this.state.displayForm === false ? null : 
+            <div className='modal'>
+            <span className='close-btn' onClick={this.toggleFormDisplay}>&times;</span>
+            <form className='modal-content add-a-book-form' onSubmit={this.handleSubmit}>
+                <label>
+                    This book is:
+                    <br />
+                    <select 
+                        name="bookRead"
+                        value={bookRead}
+                        onChange={handleChange}
+                        required
+                    >
+                    <option value="">--select one--</option>
+                    <option value={"read"}>read</option>
+                    <option value={"unread"}>unread</option>
+                    </select>
+                </label>
+                <br />
+                <label>
+                    Book Title
+                <input 
+                    name="title"
+                    type="text"
+                    value={title}
+                    onChange={handleChange}
+                    required
+                />
+                </label>
+                <label>
+                    Author
+                <input
+                    name="author"
+                    type="text"
+                    value={author}
+                    onChange={handleChange}
+                    required
+                />
+                </label>
+                <label>
+                    Number of Pages
+                <input
+                    name="pages"
+                    type="number"
+                    value={pages}
+                    onChange={handleChange}
+                    required
+                />
+                </label>
+                <button type='submit'>
+                    ADD
+                </button>
+            </form>
+            </div>
+            }
+        </div>
+    )
 }
-
-export default NewBook;
