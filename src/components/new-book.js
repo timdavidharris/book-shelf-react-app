@@ -23,7 +23,12 @@ export default function NewBook() {
         id: uniqid(),
     }
 
-    const [book, setBook] = useState({title: "", author: "", pages: "", bookRead: "read", id: uniqid()});
+    const [book, setBook] = useState({
+        title: "", 
+        author: "", 
+        pages: "", 
+        bookRead: "read", 
+        id: uniqid()});
     const [formDisplay, setFormDisplay] = useState(false);
     const [library, setLibrary] = useState([dune, nineteen84]);
 
