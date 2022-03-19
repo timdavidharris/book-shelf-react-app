@@ -7,63 +7,48 @@ import SupabaseComponent from '../supabaseClient';
 // https://medium.com/nerd-for-tech/how-to-build-forms-with-multiple-input-fields-using-react-hooks-677da2b851aa
 
 export default function NewBook() {
+    const dune = {
+        title: 'Dune',
+        author: 'Frank Herbert',
+        pages: '658',
+        bookRead: 'read',
+        id: uniqid(),
+    }
+
+    const nineteen84 = {
+        title: '1984',
+        author: 'George Orwell',
+        pages: '298',
+        bookRead: 'read',
+        id: uniqid(),
+    }
+
     const [book, setBook] = useState({title: "", author: "", pages: "", bookRead: "read", id: uniqid()});
     const [formDisplay, setFormDisplay] = useState(false);
     const [library, setLibrary] = useState([dune, nineteen84]);
 
-    dune = () => {
-        let book = {
-            title: 'Dune',
-            author: 'Frank Herbert',
-            pages: '658',
-            bookRead: 'read',
-            id: uniqid(),
-        }
-        return book;
+    const handleChange = (e) => {
+        setBook({...book, [e.target.name]: e.target.value});
     }
 
-    nineteen84 = () => {
-        let book = {
-            title: '1984',
-            author: 'George Orwell',
-            pages: '298',
-            bookRead: 'read',
-            id: uniqid(),
-        }
-        return book;
-    }
-
-    handleChange = (e) => {
-        setBook({...book, [e.target.name]: e.target.value})
-    }
-
-    bookObj = () => {
-        let book = {
-                title: this.state.bookTitle,
-                author: this.state.bookAuthor,
-                pages: this.state.bookPages,
-                bookRead: this.state.isBookRead,
-                id: this.state.id,
-            }
-        return book;
-    }
-
-    removeBook = (book) => {
+    const removeBook = (book) => {
         let updatedArray = library.filter(item => item.id !== book.id)
         setLibrary(updatedArray);
         updateLocalStorage(updatedArray);
     }
 
-    toggleFormDisplay = () => {
+    const toggleFormDisplay = () => {
         formDisplay === true ? setFormDisplay(false) : setFormDisplay(true);
     }
 
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(book);
+        setLibrary(library.concat(book));
         return toggleFormDisplay();
     }
 
-    updateLibraryArray = (book) => {
+    const updateLibraryArray = (book) => {
         let update = book;
         let bookIndex = library.findIndex(book => book.id === update.id);
         library.splice(bookIndex, 1, update);
@@ -71,11 +56,11 @@ export default function NewBook() {
         updateLocalStorage(library);
     }
 
-    updateLocalStorage = (libraryArray) => {
+    const updateLocalStorage = (libraryArray) => {
         localStorage.setItem('libraryArray', JSON.stringify(libraryArray));
     }
 
-    render(
+    return(
         <div className='form-and-card-div'>
         <SupabaseComponent library={library}/>
             <div className='book-parent-div'>
@@ -83,19 +68,19 @@ export default function NewBook() {
                     return <BookCard key={book.id} book={book} removeBook={removeBook} updateLibraryArray={updateLibraryArray}/>;
                 })}
             </div>
-            <button className='toggle-btn' onClick={this.toggleFormDisplay}>
+            <button className='toggle-btn' onClick={toggleFormDisplay}>
                 Add A Book
             </button>
-            {this.state.displayForm === false ? null : 
+            {formDisplay === false ? null : 
             <div className='modal'>
-            <span className='close-btn' onClick={this.toggleFormDisplay}>&times;</span>
-            <form className='modal-content add-a-book-form' onSubmit={this.handleSubmit}>
+            <span className='close-btn' onClick={toggleFormDisplay}>&times;</span>
+            <form className='modal-content add-a-book-form' onSubmit={handleSubmit}>
                 <label>
                     This book is:
                     <br />
                     <select 
                         name="bookRead"
-                        value={bookRead}
+                        value={book.bookRead}
                         onChange={handleChange}
                         required
                     >
@@ -110,7 +95,7 @@ export default function NewBook() {
                 <input 
                     name="title"
                     type="text"
-                    value={title}
+                    value={book.title}
                     onChange={handleChange}
                     required
                 />
@@ -120,7 +105,7 @@ export default function NewBook() {
                 <input
                     name="author"
                     type="text"
-                    value={author}
+                    value={book.author}
                     onChange={handleChange}
                     required
                 />
@@ -130,7 +115,7 @@ export default function NewBook() {
                 <input
                     name="pages"
                     type="number"
-                    value={pages}
+                    value={book.pages}
                     onChange={handleChange}
                     required
                 />
