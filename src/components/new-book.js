@@ -68,7 +68,16 @@ export default function NewBook() {
         <div className='form-and-card-div'>
         {/* <SupabaseComponent library={library}/> */}
             <div className='book-parent-div'>
-                {library === undefined ? null : library.map((book) => {
+                {library === undefined || library.length === 0 ? 
+                <div className='book-child-div'>
+                    <h3>Humm... no books? 
+                    <br />
+                    Click "Add A Book" to start your library!
+                    <br />
+                    👇
+                    </h3>
+                </div> : 
+                library.map((book) => {
                     return <BookCard key={book.id} book={book} removeBook={removeBook} updateLibraryArray={updateLibraryArray}/>;
                 })}
             </div>
