@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BookCard from './book-card';
 import uniqid from 'uniqid';
-import SupabaseComponent from '../supabaseClient';
+// import SupabaseComponent from '../supabaseClient';
 
 // For Reference:
 // https://medium.com/nerd-for-tech/how-to-build-forms-with-multiple-input-fields-using-react-hooks-677da2b851aa
@@ -66,7 +66,7 @@ export default function NewBook() {
 
     return(
         <div className='form-and-card-div'>
-        <SupabaseComponent library={library}/>
+        {/* <SupabaseComponent library={library}/> */}
             <div className='book-parent-div'>
                 {library === undefined ? null : library.map((book) => {
                     return <BookCard key={book.id} book={book} removeBook={removeBook} updateLibraryArray={updateLibraryArray}/>;
