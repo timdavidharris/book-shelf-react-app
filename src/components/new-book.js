@@ -30,7 +30,7 @@ export default function NewBook() {
         bookRead: "read", 
         id: uniqid()});
     const [formDisplay, setFormDisplay] = useState(false);
-    const [library, setLibrary] = useState([dune, nineteen84]);
+    const [library, setLibrary] = useState(localStorage.getItem("libraryArray") === null ? [dune, nineteen84] : JSON.parse(localStorage.getItem('libraryArray')));
 
     const handleChange = (e) => {
         setBook({...book, [e.target.name]: e.target.value});
@@ -48,7 +48,6 @@ export default function NewBook() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(book);
         setLibrary(library.concat(book));
         return toggleFormDisplay();
     }
