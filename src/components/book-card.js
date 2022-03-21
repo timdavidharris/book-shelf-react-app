@@ -18,13 +18,27 @@ export default function BookCard(props) {
     }
 
     const updateReadStatus = () => {
-        book.bookRead === "read" ? setBook(book, {bookRead: "unread"}) : setBook(book, {bookRead: "read"});
+        if (book.bookRead === "read") {
+            book.bookRead = "unread";
+            setBook(book => ({...book, bookRead: "unread"}))
+        } else {
+            book.bookRead = "read";
+            setBook(book => ({...book, bookRead: "read"}))
+        }
         updateLibraryArray(book);
+    }
+
+    const toggleEditFormDisplay = () => {
+        displayEditForm === false ? setDisplayEditForm(true) : setDisplayEditForm(false);
+    }
+
+    const toggleConfirmDelete = () => {
+        confirmDelete === "show" ? setConfirmDelete("hide") : setConfirmDelete("show");
     }
 
     return (
         <div className='book-child-div'>
-            {`${title} by ${author} has ${pages} pages and is ${bookRead}`}
+            {`${book.title} by ${book.author} has ${book.pages} pages and is ${book.bookRead}`}
             <button onClick={updateReadStatus}>
                 Change Read Status
             </button>
@@ -32,18 +46,18 @@ export default function BookCard(props) {
                 Edit Book
             </button>
             { confirmDelete === "hide" ? 
-                <button onClick={setDeleteConfirm("show")}>
+                <button onClick={toggleConfirmDelete}>
                 DELETE BOOK
                 </button>
                 :
                 <div className='modal'>
-                    <span className='close-btn' onClick={setDeleteConfirm("hide")}>&times;</span>
+                    <span className='close-btn' onClick={toggleConfirmDelete}>&times;</span>
                     <div className='modal-content'>
-                        <button onClick={removeBook(book)}>
+                        <button onClick={() => removeBook(book)}>
                             YES, DELETE BOOK
                         </button>
                         <br />
-                        <button onClick={setDeleteConfirm("hide")}>
+                        <button onClick={toggleConfirmDelete}>
                             NO, do NOT delete Book
                         </button>
                     </div>
@@ -51,7 +65,7 @@ export default function BookCard(props) {
                 }
             {displayEditForm === false ? null :
                 <div className='modal'>
-                <span className='close-btn' onClick={setDisplayEditForm(false)}>&times;</span>
+                <span className='close-btn' onClick={toggleEditFormDisplay}>&times;</span>
                 <form className='modal-content add-a-book-form' onSubmit={handleSubmit}>
                 <label>
                     Book Title
