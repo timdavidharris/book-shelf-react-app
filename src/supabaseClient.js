@@ -8,17 +8,20 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default function SupabaseComponent(props) {
     const library = props.library;
     let newArray = library.map((book) => { return {'data': book} });
-    select();
+    readRows();
     insertRow(newArray);
     return(null);
 }
 
-async function select() {
-    let { data: test_table, error} = await supabase.from('test_table').select('*');
-    return(null);
+async function insertRow(library) {
+    library.map((book) => {
+        const { data, error } = await supabase
+        .from('test_table')
+        .insert([{ id: book.id }], {upsert : true})
+    })
 }
 
-async function insertRow(library) {
-    const{ data, error } = await supabase.from('test_table').insert(library);
-    return(null);
+async function readRows() {
+    let data = await supabase.from('test_table').select('*');
+    console.log(data);
 }
