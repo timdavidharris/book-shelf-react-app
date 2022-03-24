@@ -10,15 +10,32 @@ export default function SupabaseComponent(props) {
     let newArray = library.map((book) => { return {'data': book} });
     readRows();
     insertRow(newArray);
-    return(null);
+    return(
+        <div>
+            <button onClick={() => deleteStorage()}>
+                DELETE Storage
+            </button>
+        </div>
+    );
+}
+
+async function deleteStorage() {
+    const { data, error } = await supabase
+        .from('test_table')
+        .delete()
 }
 
 async function insertRow(library) {
-    library.map((book) => {
-        const { data, error } = await supabase
+    library.map((book) => { insertFN(book) });
+}
+
+// (book => ({...book, bookRead: "unread"}))
+
+async function insertFN(book) {
+    const { data, error } = await supabase
         .from('test_table')
-        .insert([{ id: book.id }], {upsert : true})
-    })
+        .upsert({ id: book.id, book: book })
+        console.log("data: " + data);
 }
 
 async function readRows() {
