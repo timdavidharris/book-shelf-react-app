@@ -10,19 +10,7 @@ export default function SupabaseComponent(props) {
     let newArray = library.map((book) => { return {'data': book} });
     readRows();
     insertRow(newArray);
-    return(
-        <div>
-            <button onClick={() => deleteStorage()}>
-                DELETE Storage
-            </button>
-        </div>
-    );
-}
-
-async function deleteStorage() {
-    const { data, error } = await supabase
-        .from('test_table')
-        .delete()
+    return(null);
 }
 
 async function insertRow(library) {
