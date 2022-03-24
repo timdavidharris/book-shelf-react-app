@@ -8,9 +8,16 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default function SupabaseComponent(props) {
     const library = props.library;
     let newArray = library.map((book) => { return {'data': book} });
-    readRows();
-    insertRow(newArray);
-    return(null);
+    return(
+        <div>
+            <button onClick={() => insertRow(newArray)}>
+                Click to Upsert Data
+            </button>
+            <button onClick={() => readRows()}>
+                Click to Read Rows
+            </button>
+        </div>
+    );
 }
 
 async function insertRow(library) {
@@ -18,12 +25,13 @@ async function insertRow(library) {
 }
 
 async function insertFN(book) {
+    console.log(`book: ${book}`);
     const { data, error } = await supabase
         .from('test_table')
         .upsert({ id: book.length, book: book })
-        console.log(`book: ${book.length} and data: ${data}`)
 }
 
 async function readRows() {
     let data = await supabase.from('test_table').select('*');
+    console.log(data);
 }
