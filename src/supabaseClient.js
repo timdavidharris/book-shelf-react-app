@@ -14,19 +14,16 @@ export default function SupabaseComponent(props) {
 }
 
 async function insertRow(library) {
-    library.map((book) => { insertFN(book) });
+    library.forEach((book) => { insertFN(book) });
 }
-
-// (book => ({...book, bookRead: "unread"}))
 
 async function insertFN(book) {
     const { data, error } = await supabase
         .from('test_table')
-        .upsert({ id: book.id, book: book })
-        console.log("data: " + data);
+        .upsert({ id: book.length, book: book })
+        console.log(`book: ${book.length} and data: ${data}`)
 }
 
 async function readRows() {
     let data = await supabase.from('test_table').select('*');
-    console.log(data);
 }
