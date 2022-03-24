@@ -7,10 +7,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function SupabaseComponent(props) {
     const library = props.library;
-    let newArray = library.map((book) => { return {'data': book} });
     return(
         <div>
-            <button onClick={() => insertRow(newArray)}>
+            <button onClick={() => insertRow(library)}>
                 Click to Upsert Data
             </button>
             <button onClick={() => readRows()}>
@@ -21,15 +20,16 @@ export default function SupabaseComponent(props) {
 }
 
 async function insertRow(library) {
-    library.forEach((book) => { insertFN(book) });
+    library.forEach(async function(book) {
+        const newBook = {'data': book};
+        console.log(newBook);
+        const { data, error } = await supabase
+            .from('test_table')
+            .upsert({ id: newBook.data.id, book: newBook })
+    });
 }
 
-async function insertFN(book) {
-    console.log(`book: ${book}`);
-    const { data, error } = await supabase
-        .from('test_table')
-        .upsert({ id: book.length, book: book })
-}
+
 
 async function readRows() {
     let data = await supabase.from('test_table').select('*');
