@@ -34,16 +34,24 @@ export default function Library() {
     async function upsertLibrary(library) {
         library.forEach(async function(book) {
             const newBook = {'data': book};
-            console.log(newBook);
             const { data, error } = await supabase
                 .from('test_table')
                 .upsert({ id: newBook.data.id, book: newBook })
         });
     }
     
+    async function getLibrary() {
+        const { data, error } = await supabase
+            .from('test_table')
+            .select()
+        const libraryArray = data.map((item) => {
+            return item.book.data;
+        });
+        setLibrary(libraryArray);
+    }
+
     async function readRows() {
         let data = await supabase.from('test_table').select('*');
-        console.log(data);
     }
 
     const addBookToLibrary = (book) => {
@@ -80,6 +88,9 @@ export default function Library() {
                 </button>
                 <button onClick={() => readRows()}>
                     Click to Read Rows
+                </button>
+                <button onClick={() => getLibrary()} >
+                    Click to Get Library
                 </button>
             </div>
             <section>
