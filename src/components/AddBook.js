@@ -4,18 +4,18 @@ import React, { useState } from 'react';
 // https://medium.com/nerd-for-tech/how-to-build-forms-with-multiple-input-fields-using-react-hooks-677da2b851aa
 
 export default function NewBook(props) {
+    const randomNumber = () => {
+        return Math.floor(Math.random() * 1000);
+    }
     const [formDisplay, setFormDisplay] = useState(false);
     const library = props.library;
+    const addBookToLibrary = props.addBookToLibrary;
     const [book, setBook] = useState({
         title: "", 
         author: "", 
         pages: "", 
         bookRead: "read", 
         id: randomNumber()});
-
-    const randomNumber = () => {
-        return Math.floor(Math.random() * 1000);
-    }
 
     const handleChange = (e) => {
         setBook({...book, [e.target.name]: e.target.value});
@@ -27,7 +27,7 @@ export default function NewBook(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setLibrary(library.concat(book));
+        addBookToLibrary(book);
         return toggleFormDisplay();
     }
 
