@@ -81,8 +81,19 @@ export default function Library() {
             <section>
                 <AddBook library={library}/>
             </section>
-            <section>
-                <Book updateLibrary={updateLibrary} removeBook={removeBook}/>
+            <section className='book-parent-div'>
+                {library === undefined || library.length === 0 ? 
+                <div className='book-child-div'>
+                    <h3>Humm... no books? 
+                    <br />
+                    Click "Add A Book" to start your library!
+                    <br />
+                    👇
+                    </h3>
+                </div> : 
+                library.map((book) => {
+                    return <Book key={book.id} book={book} updateLibrary={updateLibrary} removeBook={removeBook}/>;
+                })}
             </section>
             <footer>
                 <GithubLink />
