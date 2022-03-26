@@ -1,36 +1,21 @@
 import React, { useState } from 'react';
-import Book from './Book';
-import uniqid from 'uniqid';
-import Library from './Library';
 
 // For Reference:
 // https://medium.com/nerd-for-tech/how-to-build-forms-with-multiple-input-fields-using-react-hooks-677da2b851aa
 
-export default function NewBook() {
-    const dune = {
-        title: 'Dune',
-        author: 'Frank Herbert',
-        pages: '658',
-        bookRead: 'read',
-        id: uniqid(),
-    }
-
-    const nineteen84 = {
-        title: '1984',
-        author: 'George Orwell',
-        pages: '298',
-        bookRead: 'read',
-        id: uniqid(),
-    }
-
+export default function NewBook(props) {
+    const [formDisplay, setFormDisplay] = useState(false);
+    const updateLibrary = props.updateLibrary;
     const [book, setBook] = useState({
         title: "", 
         author: "", 
         pages: "", 
         bookRead: "read", 
-        id: uniqid()});
-    const [formDisplay, setFormDisplay] = useState(false);
-    const [library, setLibrary] = useState(localStorage.getItem("libraryArray") === null ? [dune, nineteen84] : JSON.parse(localStorage.getItem('libraryArray')));
+        id: randomNumber()});
+
+    const randomNumber = () => {
+        return Math.floor(Math.random() * 1000);
+    }
 
     const handleChange = (e) => {
         setBook({...book, [e.target.name]: e.target.value});
@@ -52,14 +37,6 @@ export default function NewBook() {
         return toggleFormDisplay();
     }
 
-    const updateLibraryArray = (book) => {
-        let update = book;
-        let bookIndex = library.findIndex(book => book.id === update.id);
-        library.splice(bookIndex, 1, update);
-        setLibrary(library)
-        updateLocalStorage(library);
-    }
-
     const updateLocalStorage = (libraryArray) => {
         localStorage.setItem('libraryArray', JSON.stringify(libraryArray));
     }
@@ -78,7 +55,7 @@ export default function NewBook() {
                     </h3>
                 </div> : 
                 library.map((book) => {
-                    return <Book key={book.id} book={book} removeBook={removeBook} updateLibraryArray={updateLibraryArray}/>;
+                    return <Book key={book.id} book={book} removeBook={removeBook}/>;
                 })}
             </div>
             <button className='toggle-btn' onClick={toggleFormDisplay}>
