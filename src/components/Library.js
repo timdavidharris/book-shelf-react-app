@@ -31,7 +31,7 @@ const nineteen84 = {
 export default function Library() {
     const [library, setLibrary] = useState([]);
 
-    async function upsertRow(library) {
+    async function upsertLibrary(library) {
         library.forEach(async function(book) {
             const newBook = {'data': book};
             console.log(newBook);
@@ -51,7 +51,13 @@ export default function Library() {
         let bookIndex = library.findIndex(book => book.id === update.id);
         library.splice(bookIndex, 1, update);
         setLibrary(library)
-        upsertRow(library);
+        upsertLibrary(library);
+    }
+
+    const removeBook = (book) => {
+        let updatedArray = library.filter(item => item.id !== book.id)
+        setLibrary(updatedArray);
+        upsertLibrary(updatedArray);
     }
 
     return(
@@ -65,7 +71,7 @@ export default function Library() {
                 </h2>
             </header>
             <div>
-                <button onClick={() => upsertRow(library)}>
+                <button onClick={() => upsertLibrary(library)}>
                     Click to Upsert Data
                 </button>
                 <button onClick={() => readRows()}>
@@ -76,7 +82,7 @@ export default function Library() {
                 <AddBook library={library}/>
             </section>
             <section>
-                <Book updateLibrary={updateLibrary}/>
+                <Book updateLibrary={updateLibrary} removeBook={removeBook}/>
             </section>
             <footer>
                 <GithubLink />
