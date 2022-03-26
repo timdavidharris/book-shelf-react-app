@@ -28,10 +28,6 @@ export default function BookCard(props) {
         updateLibrary(book);
     }
 
-    const toggleConfirmDelete = () => {
-        confirmDelete === "show" ? setConfirmDelete("hide") : setConfirmDelete("show");
-    }
-
     return (
         <div className='book-child-div'>
             {`${book.title} by ${book.author} has ${book.pages} pages and is ${book.bookRead}`}
@@ -42,18 +38,18 @@ export default function BookCard(props) {
                 Edit Book
             </button>
             { confirmDelete === "hide" ? 
-                <button onClick={toggleConfirmDelete}>
+                <button onClick={() => setConfirmDelete("show")}>
                 DELETE BOOK
                 </button>
                 :
                 <div className='modal'>
-                    <span className='close-btn' onClick={toggleConfirmDelete}>&times;</span>
+                    <span className='close-btn' onClick={() => setConfirmDelete("hide")}>&times;</span>
                     <div className='modal-content'>
                         <button onClick={() => removeBook(book)}>
                             YES, DELETE BOOK
                         </button>
                         <br />
-                        <button onClick={toggleConfirmDelete}>
+                        <button onClick={() => setConfirmDelete("hide")}>
                             NO, do NOT delete Book
                         </button>
                     </div>
