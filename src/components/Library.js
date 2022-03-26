@@ -9,6 +9,14 @@ export default function SupabaseComponent(props) {
     const library = props.library;
     return(
         <div>
+            <section>
+                <h1>
+                Book Shelf
+                </h1>
+                <h2>
+                Books on Your Shelf
+                </h2>
+            </section>
             <button onClick={() => insertRow(library)}>
                 Click to Upsert Data
             </button>
