@@ -4,7 +4,7 @@ export default function BookCard(props) {
     const [book, setBook] = useState(props.book);
     const [displayEditForm, setDisplayEditForm] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState("hide");
-    const updateLibraryArray = props.updateLibraryArray;
+    const updateLibrary = props.updateLibrary;
     const removeBook = props.removeBook;
 
     const handleChange = (e) => {
@@ -14,7 +14,7 @@ export default function BookCard(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setDisplayEditForm(false);
-        updateLibraryArray(book);
+        updateLibrary(book);
     }
 
     const updateReadStatus = () => {
@@ -25,11 +25,7 @@ export default function BookCard(props) {
             book.bookRead = "read";
             setBook(book => ({...book, bookRead: "read"}))
         }
-        updateLibraryArray(book);
-    }
-
-    const toggleEditFormDisplay = () => {
-        displayEditForm === false ? setDisplayEditForm(true) : setDisplayEditForm(false);
+        updateLibrary(book);
     }
 
     const toggleConfirmDelete = () => {
@@ -42,7 +38,7 @@ export default function BookCard(props) {
             <button onClick={updateReadStatus}>
                 Change Read Status
             </button>
-            <button onClick={toggleEditFormDisplay}>
+            <button onClick={() => setDisplayEditForm(true)}>
                 Edit Book
             </button>
             { confirmDelete === "hide" ? 
@@ -65,7 +61,7 @@ export default function BookCard(props) {
                 }
             {displayEditForm === false ? null :
                 <div className='modal'>
-                <span className='close-btn' onClick={toggleEditFormDisplay}>&times;</span>
+                <span className='close-btn' onClick={() => setDisplayEditForm(false)}>&times;</span>
                 <form className='modal-content add-a-book-form' onSubmit={handleSubmit}>
                 <label>
                     Book Title
