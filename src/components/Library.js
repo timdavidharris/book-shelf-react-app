@@ -11,7 +11,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default function SupabaseComponent(props) {
     const library = props.library;
     return(
-        <div>
+        <main>
             <section>
                 <h1>
                 Book Shelf
@@ -20,20 +20,24 @@ export default function SupabaseComponent(props) {
                 Books on Your Shelf
                 </h2>
             </section>
-            <button onClick={() => insertRow(library)}>
-                Click to Upsert Data
-            </button>
-            <button onClick={() => readRows()}>
-                Click to Read Rows
-            </button>
             <div>
+                <button onClick={() => insertRow(library)}>
+                    Click to Upsert Data
+                </button>
+                <button onClick={() => readRows()}>
+                    Click to Read Rows
+                </button>
+            </div>
+            <section>
                 <AddBook />
+            </section>
+            <section>
                 <Book />
-            </div>
-            <div>
+            </section>
+            <footer>
                 <GithubLink />
-            </div>
-        </div>
+            </footer>
+        </main>
     );
 }
 
@@ -46,8 +50,6 @@ async function insertRow(library) {
             .upsert({ id: newBook.data.id, book: newBook })
     });
 }
-
-
 
 async function readRows() {
     let data = await supabase.from('test_table').select('*');
