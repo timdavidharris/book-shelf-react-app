@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 export default function NewBook(props) {
     const [formDisplay, setFormDisplay] = useState(false);
-    const updateLibrary = props.updateLibrary;
+    const library = props.library;
     const [book, setBook] = useState({
         title: "", 
         author: "", 
@@ -19,12 +19,6 @@ export default function NewBook(props) {
 
     const handleChange = (e) => {
         setBook({...book, [e.target.name]: e.target.value});
-    }
-
-    const removeBook = (book) => {
-        let updatedArray = library.filter(item => item.id !== book.id)
-        setLibrary(updatedArray);
-        updateLocalStorage(updatedArray);
     }
 
     const toggleFormDisplay = () => {
@@ -43,7 +37,6 @@ export default function NewBook(props) {
 
     return(
         <div className='form-and-card-div'>
-        <Library library={library}/>
             <div className='book-parent-div'>
                 {library === undefined || library.length === 0 ? 
                 <div className='book-child-div'>
