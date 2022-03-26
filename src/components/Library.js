@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import React, { useState } from 'react'
-import AddBook from './components/AddBook';
-import Book from './components/Book';
+import AddBook from './AddBook';
+import Book from './Book';
 import GithubLink from './GithubLink';
 
 const supabaseUrl = 'https://viyyqfksopapspnrgxwi.supabase.co';
@@ -46,6 +46,10 @@ export default function Library() {
         console.log(data);
     }
 
+    const addBookToLibrary = (book) => {
+        setLibrary(library.concat(book));
+    }
+
     const updateLibrary = (book) => {
         let update = book;
         let bookIndex = library.findIndex(book => book.id === update.id);
@@ -79,16 +83,16 @@ export default function Library() {
                 </button>
             </div>
             <section>
-                <AddBook library={library}/>
+                <AddBook library={library} addBookToLibrary={addBookToLibrary}/>
             </section>
             <section className='book-parent-div'>
                 {library === undefined || library.length === 0 ? 
                 <div className='book-child-div'>
+                    ☝️
+                    <br />
                     <h3>Humm... no books? 
                     <br />
                     Click "Add A Book" to start your library!
-                    <br />
-                    👇
                     </h3>
                 </div> : 
                 library.map((book) => {
