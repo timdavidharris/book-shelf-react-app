@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GithubLink() {
+export default function GithubLink() {
     return (
         <div id='github'>
             <a href='https://github.com/timdavidharris/book-shelf-react-app' target='_blank' rel="noopener noreferrer">
@@ -9,5 +9,3 @@ function GithubLink() {
         </div>
     )
 }
-
-export default GithubLink;
