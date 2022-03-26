@@ -33,20 +33,6 @@ export default function NewBook(props) {
 
     return(
         <div className='form-and-card-div'>
-            <div className='book-parent-div'>
-                {library === undefined || library.length === 0 ? 
-                <div className='book-child-div'>
-                    <h3>Humm... no books? 
-                    <br />
-                    Click "Add A Book" to start your library!
-                    <br />
-                    👇
-                    </h3>
-                </div> : 
-                library.map((book) => {
-                    return <Book key={book.id} book={book} removeBook={removeBook}/>;
-                })}
-            </div>
             <button className='toggle-btn' onClick={toggleFormDisplay}>
                 Add A Book
             </button>
