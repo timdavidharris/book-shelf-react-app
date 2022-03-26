@@ -69,10 +69,10 @@ export default function Library() {
                 </button>
             </div>
             <section>
-                <AddBook updateLibrary={updateLibrary}/>
+                <AddBook />
             </section>
             <section>
-                <Book />
+                <Book updateLibrary={updateLibrary}/>
             </section>
             <footer>
                 <GithubLink />
