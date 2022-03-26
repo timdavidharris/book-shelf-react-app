@@ -31,10 +31,6 @@ export default function NewBook(props) {
         return toggleFormDisplay();
     }
 
-    const updateLocalStorage = (libraryArray) => {
-        localStorage.setItem('libraryArray', JSON.stringify(libraryArray));
-    }
-
     return(
         <div className='form-and-card-div'>
             <div className='book-parent-div'>
