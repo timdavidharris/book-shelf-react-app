@@ -8,26 +8,6 @@ const supabaseUrl = 'https://viyyqfksopapspnrgxwi.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpeXlxZmtzb3BhcHNwbnJneHdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDY3MDk5MTIsImV4cCI6MTk2MjI4NTkxMn0.HkJJK2a8rUPa-EU3VUeiibZD76AJSjTK7rQ7BcWi_as';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const randomNumber = () => {
-    return Math.floor(Math.random() * 1000);
-}
-
-const dune = {
-    title: 'Dune',
-    author: 'Frank Herbert',
-    pages: '658',
-    bookRead: 'read',
-    id: randomNumber(),
-}
-
-const nineteen84 = {
-    title: '1984',
-    author: 'George Orwell',
-    pages: '298',
-    bookRead: 'read',
-    id: randomNumber(),
-}
-
 export default function Library() {
     const [library, setLibrary] = useState([]);
 
@@ -83,12 +63,6 @@ export default function Library() {
                 </h2>
             </header>
             <div>
-                <button onClick={() => upsertLibrary(library)}>
-                    Click to Upsert Data
-                </button>
-                <button onClick={() => readRows()}>
-                    Click to Read Rows
-                </button>
                 <button onClick={() => getLibrary()} >
                     Click to Get Library
                 </button>
