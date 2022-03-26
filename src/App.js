@@ -1,6 +1,6 @@
 import React from 'react';
-import NewBook from './components/new-book';
-import GitHubLink from './components/github-link';
+import AddBook from './components/AddBook';
+import GithubLink from './components/GithubLink';
 
 class App extends React.Component {
   render() {
@@ -13,8 +13,8 @@ class App extends React.Component {
           Books on Your Shelf
         </h2>
         <section id='book-cards'>
-          <NewBook />
-          <GitHubLink />
+          <AddBook />
+          <GithubLink />
         </section>
       </div>
     )
