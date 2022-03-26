@@ -42,6 +42,14 @@ export default function Library() {
         console.log(data);
     }
 
+    const updateLibrary = (book) => {
+        let update = book;
+        let bookIndex = library.findIndex(book => book.id === update.id);
+        library.splice(bookIndex, 1, update);
+        setLibrary(library)
+        upsertRow(library);
+    }
+
     return(
         <main>
             <header>
@@ -61,7 +69,7 @@ export default function Library() {
                 </button>
             </div>
             <section>
-                <AddBook />
+                <AddBook updateLibrary={updateLibrary}/>
             </section>
             <section>
                 <Book />
