@@ -8,7 +8,6 @@ export default function NewBook(props) {
         return Math.floor(Math.random() * 1000);
     }
     const [formDisplay, setFormDisplay] = useState(false);
-    const library = props.library;
     const addBookToLibrary = props.addBookToLibrary;
     const [book, setBook] = useState({
         title: "", 
