@@ -52,7 +52,6 @@ export default function Library() {
             .from('test_table')
             .delete()
             .match({ id: newBook.data.id });
-        console.log(data, error);
     }
 
     (async function initialLoad() {
