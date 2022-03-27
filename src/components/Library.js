@@ -74,8 +74,8 @@ export default function Library() {
                 <AddBook library={library} addBookToLibrary={addBookToLibrary}/>
             </section>
             <section className='book-parent-div'>
-                {awaitLibrary === true ? <h3>Loading Your Library...</h3> : 
-                    library === undefined || library.length === 0 ? 
+                {awaitLibrary === true ? <h3>Loading Your Library...</h3> :
+                library === undefined || library.length === 0 ?
                 <div className='book-child-div'>
                     ☝️
                     <br />
@@ -83,7 +83,7 @@ export default function Library() {
                     <br />
                     Click "Add A Book" to start your library!
                     </h3>
-                </div> : 
+                </div> :
                 library.map((book) => {
                     return <Book key={book.id} book={book} updateLibrary={updateLibrary} removeBook={removeBook}/>;
                 })}
