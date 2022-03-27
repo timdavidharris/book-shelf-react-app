@@ -70,11 +70,6 @@ export default function Library() {
                     Books on Your Shelf
                 </h2>
             </header>
-            <div>
-                <button onClick={() => getLibrary()} >
-                    Click to Get Library
-                </button>
-            </div>
             <section>
                 <AddBook library={library} addBookToLibrary={addBookToLibrary}/>
             </section>
