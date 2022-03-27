@@ -10,6 +10,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function Library() {
     const [library, setLibrary] = useState([]);
+    const [awaitLibrary, setAwaitLibrary] = useState(true);
 
     async function upsertLibrary(library) {
         library.forEach(async function(book) {
@@ -28,6 +29,7 @@ export default function Library() {
             return item.book.data;
         });
         setLibrary(libraryArray);
+        setAwaitLibrary(false);
     }
 
     async function readRows() {
@@ -52,6 +54,10 @@ export default function Library() {
         upsertLibrary(updatedArray);
     }
 
+    (async function initialLoad() {
+        await getLibrary();
+    })()
+
     return(
         <main>
             <header>
@@ -71,7 +77,8 @@ export default function Library() {
                 <AddBook library={library} addBookToLibrary={addBookToLibrary}/>
             </section>
             <section className='book-parent-div'>
-                {library === undefined || library.length === 0 ? 
+                {awaitLibrary === true ? <h3>Loading Your Library...</h3> : 
+                    library === undefined || library.length === 0 ? 
                 <div className='book-child-div'>
                     ☝️
                     <br />
