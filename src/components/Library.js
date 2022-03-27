@@ -48,10 +48,15 @@ export default function Library() {
         upsertLibrary(library);
     }
 
-    const removeBook = (book) => {
+    async function removeBook(book) {
         let updatedArray = library.filter(item => item.id !== book.id)
         setLibrary(updatedArray);
-        upsertLibrary(updatedArray);
+        const newBook = {'data': book};
+        const { data, error } = await supabase
+            .from('test_table')
+            .delete()
+            .match({ id: newBook.data.id });
+        console.log(data, error);
     }
 
     (async function initialLoad() {
