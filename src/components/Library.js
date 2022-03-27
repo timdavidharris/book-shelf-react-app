@@ -55,7 +55,9 @@ export default function Library() {
     }
 
     (async function initialLoad() {
-        await getLibrary();
+        if (awaitLibrary === true) {
+            await getLibrary()
+        }
     })()
 
     return(
