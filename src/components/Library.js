@@ -34,6 +34,7 @@ export default function Library() {
 
     const addBookToLibrary = (book) => {
         setLibrary(library.concat(book));
+        library[library.length] = book;
         upsertLibrary(library);
     }
 
