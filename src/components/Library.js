@@ -32,10 +32,6 @@ export default function Library() {
         setAwaitLibrary(false);
     }
 
-    async function readRows() {
-        let data = await supabase.from('test_table').select('*');
-    }
-
     const addBookToLibrary = (book) => {
         setLibrary(library.concat(book));
     }
