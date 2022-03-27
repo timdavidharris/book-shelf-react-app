@@ -20,24 +20,20 @@ export default function NewBook(props) {
         setBook({...book, [e.target.name]: e.target.value});
     }
 
-    const toggleFormDisplay = () => {
-        formDisplay === true ? setFormDisplay(false) : setFormDisplay(true);
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         addBookToLibrary(book);
-        return toggleFormDisplay();
+        setFormDisplay(false);
     }
 
     return(
         <div className='form-and-card-div'>
-            <button className='toggle-btn' onClick={toggleFormDisplay}>
+            <button className='toggle-btn' onClick={() => setFormDisplay(true)}>
                 Add A Book
             </button>
             {formDisplay === false ? null : 
             <div className='modal'>
-            <span className='close-btn' onClick={toggleFormDisplay}>&times;</span>
+            <span className='close-btn' onClick={() => setFormDisplay(false)}>&times;</span>
             <form className='modal-content add-a-book-form' onSubmit={handleSubmit}>
                 <label>
                     This book is:
