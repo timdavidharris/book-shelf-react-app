@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 export default function NewBook(props) {
     const randomNumber = () => {
-        return Math.floor(Math.random() * 1000);
+        return Math.floor(Math.random() * 100000);
     }
     const [formDisplay, setFormDisplay] = useState(false);
     const addBookToLibrary = props.addBookToLibrary;
@@ -24,6 +24,7 @@ export default function NewBook(props) {
         e.preventDefault();
         addBookToLibrary(book);
         setFormDisplay(false);
+        setBook({title: "", author: "", pages: "", bookRead: "read",});
     }
 
     return(
