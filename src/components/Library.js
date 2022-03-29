@@ -77,7 +77,9 @@ export default function Library() {
                 {awaitLibrary === true ? <h3>Loading Your Library...</h3> :
                 library === undefined || library.length === 0 ?
                 <div className='book-child-div'>
-                    ☝️
+                    <span role='img' aria-label='emoji finger pointing up'>
+                        ☝️
+                    </span>
                     <br />
                     <h3>Humm... no books? 
                     <br />
