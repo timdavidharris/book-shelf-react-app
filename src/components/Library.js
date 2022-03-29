@@ -12,13 +12,11 @@ export default function Library() {
     const [library, setLibrary] = useState([]);
     const [awaitLibrary, setAwaitLibrary] = useState(true);
 
-    async function upsertLibrary(library) {
-        library.forEach(async function(book) {
-            const newBook = {'data': book};
-            const { data, error } = await supabase
-                .from('test_table')
-                .upsert({ id: newBook.data.id, book: newBook })
-        });
+    async function upsertBook(book) {
+        const newBook = {'data': book};
+        const { data, error } = await supabase
+            .from('test_table')
+            .upsert({ id: newBook.data.id, book: newBook })
     }
     
     async function getLibrary() {
@@ -35,7 +33,7 @@ export default function Library() {
     const addBookToLibrary = (book) => {
         setLibrary(library.concat(book));
         library[library.length] = book;
-        upsertLibrary(library);
+        upsertBook(book);
     }
 
     const updateLibrary = (book) => {
@@ -43,7 +41,7 @@ export default function Library() {
         let bookIndex = library.findIndex(book => book.id === update.id);
         library.splice(bookIndex, 1, update);
         setLibrary(library)
-        upsertLibrary(library);
+        upsertBook(book);
     }
 
     async function removeBook(book) {
