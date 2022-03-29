@@ -1,12 +1,10 @@
 # React
 
-This web app is built with React
+[This web app](https://timsbooks.netlify.app/) is built with React
 
 ## Netlify
 
-Hosted with netlify
-
-[Click Here](https://timsbooks.netlify.app/) to see the site
+Hosted with [netlify](https://www.netlify.com/)
 
 ## Supabase
 
