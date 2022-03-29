@@ -9,12 +9,7 @@ export default function NewBook(props) {
     }
     const [formDisplay, setFormDisplay] = useState(false);
     const addBookToLibrary = props.addBookToLibrary;
-    const [book, setBook] = useState({
-        title: "", 
-        author: "", 
-        pages: "", 
-        bookRead: "read", 
-        id: randomNumber()});
+    const [book, setBook] = useState({title: "", author: "", pages: "", bookRead: "read", id: randomNumber()});
 
     const handleChange = (e) => {
         setBook({...book, [e.target.name]: e.target.value});
