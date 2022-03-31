@@ -81,10 +81,8 @@ export default function Library() {
                         ☝️
                     </span>
                     <br />
-                    <h3>Humm... no books? 
-                    <br />
-                    Click "Add A Book" to start your library!
-                    </h3>
+                    <h3>Humm... no books?</h3>
+                    <h3>Click "Add A Book" to start your library!</h3>
                 </div> :
                 library.forEach((book) => {
                     return <Book key={book.id} book={book} updateLibrary={updateLibrary} removeBook={removeBook}/>;
