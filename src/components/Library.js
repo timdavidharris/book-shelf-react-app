@@ -84,7 +84,7 @@ export default function Library() {
                     <h3>Humm... no books?</h3>
                     <h3>Click "Add A Book" to start your library!</h3>
                 </div> :
-                library.forEach((book) => {
+                library.map((book) => {
                     return <Book key={book.id} book={book} updateLibrary={updateLibrary} removeBook={removeBook}/>;
                 })}
             </section>
