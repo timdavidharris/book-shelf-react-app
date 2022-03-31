@@ -73,6 +73,7 @@ export default function Library() {
                 <AddBook library={library} addBookToLibrary={addBookToLibrary}/>
             </section>
             <section className='book-parent-div'>
+            {/* Use if / else statement instead : also make the no book message a new component : also remove <br /> tag */}
                 {awaitLibrary === true ? <h3>Loading Your Library...</h3> :
                 library === undefined || library.length === 0 ?
                 <div className='book-child-div'>
