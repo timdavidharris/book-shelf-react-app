@@ -80,7 +80,6 @@ export default function Library() {
                     <span role='img' aria-label='emoji finger pointing up'>
                         ☝️
                     </span>
-                    <br />
                     <h3>Humm... no books?</h3>
                     <h3>Click "Add A Book" to start your library!</h3>
                 </div> :
