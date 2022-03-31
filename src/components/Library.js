@@ -1,8 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
+import { render } from '@testing-library/react';
 import React, { useState } from 'react'
 import AddBook from './AddBook';
 import Book from './Book';
 import GithubLink from './GithubLink';
+import PlaceholderBook from './PlaceholderBook';
 
 const supabaseUrl = 'https://viyyqfksopapspnrgxwi.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpeXlxZmtzb3BhcHNwbnJneHdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDY3MDk5MTIsImV4cCI6MTk2MjI4NTkxMn0.HkJJK2a8rUPa-EU3VUeiibZD76AJSjTK7rQ7BcWi_as';
@@ -43,6 +45,18 @@ export default function Library() {
         upsertBook(updatedBook);
     }
 
+    const renderBooks = () => {
+        if (awaitLibrary) {
+            return <div><h3>Loading Your Library ...</h3></div>;
+        } else if (library.length === 0) {
+            return <PlaceholderBook />
+        } else {
+            return library.map((book, index) => {
+                return <Book key={index} book={book} updateLibrary={updateLibrary} removeBook={removeBook}/>
+            })
+        }
+    }
+
     async function removeBook(book) {
         let updatedArray = library.filter(item => item.id !== book.id)
         setLibrary(updatedArray);
@@ -73,19 +87,7 @@ export default function Library() {
                 <AddBook library={library} addBookToLibrary={addBookToLibrary}/>
             </section>
             <section className='book-parent-div'>
-            {/* Use if / else statement instead : also make the no book message a new component : also remove <br /> tag */}
-                {awaitLibrary === true ? <h3>Loading Your Library...</h3> :
-                library === undefined || library.length === 0 ?
-                <div className='book-child-div'>
-                    <span role='img' aria-label='emoji finger pointing up'>
-                        ☝️
-                    </span>
-                    <h3>Humm... no books?</h3>
-                    <h3>Click "Add A Book" to start your library!</h3>
-                </div> :
-                library.map((book) => {
-                    return <Book key={book.id} book={book} updateLibrary={updateLibrary} removeBook={removeBook}/>;
-                })}
+                {renderBooks()}
             </section>
             <footer>
                 <GithubLink />
