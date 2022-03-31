@@ -15,13 +15,13 @@ export default function Library() {
     async function upsertBook(book) {
         const newBook = {'data': book};
         const { data, error } = await supabase
-            .from('test_table')
+            .from('book_table')
             .upsert({ id: newBook.data.id, book: newBook })
     }
     
     async function getLibrary() {
         const { data, error } = await supabase
-            .from('test_table')
+            .from('book_table')
             .select()
         const libraryArray = data.map((item) => {
             return item.book.data;
@@ -36,12 +36,11 @@ export default function Library() {
         upsertBook(book);
     }
 
-    const updateLibrary = (book) => {
-        let update = book;
-        let bookIndex = library.findIndex(book => book.id === update.id);
-        library.splice(bookIndex, 1, update);
+    const updateLibrary = (updatedBook) => {
+        let bookIndex = library.findIndex(book => book.id === updatedBook.id);
+        library.splice(bookIndex, 1, updatedBook);
         setLibrary(library)
-        upsertBook(book);
+        upsertBook(updatedBook);
     }
 
     async function removeBook(book) {
@@ -49,7 +48,7 @@ export default function Library() {
         setLibrary(updatedArray);
         const newBook = {'data': book};
         const { data, error } = await supabase
-            .from('test_table')
+            .from('book_table')
             .delete()
             .match({ id: newBook.data.id });
     }
