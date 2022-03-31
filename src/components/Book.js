@@ -11,6 +11,11 @@ export default function BookCard(props) {
         setBook({...book, [e.target.name]: e.target.value});
     }
 
+    const removeBookAndHide = () => {
+        removeBook(book);
+        setConfirmDelete("hide");
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setDisplayEditForm(false);
@@ -45,7 +50,7 @@ export default function BookCard(props) {
                 <div className='modal'>
                     <span className='close-btn' onClick={() => setConfirmDelete("hide")}>&times;</span>
                     <div className='modal-content'>
-                        <button onClick={() => removeBook(book)}>
+                        <button onClick={() => removeBookAndHide()}>
                             YES, DELETE BOOK
                         </button>
                         <br />
