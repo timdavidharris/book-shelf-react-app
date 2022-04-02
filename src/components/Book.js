@@ -53,6 +53,7 @@ export default function BookCard(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        toggleFormDisplay();
         updateLibrary(book);
     }
 

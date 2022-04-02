@@ -27,6 +27,7 @@ export default function NewBook(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        toggleFormDisplay();
         addBookToLibrary(book);
         setBook({title: "", author: "", pages: "", bookRead: "read",});
     }
