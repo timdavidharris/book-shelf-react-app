@@ -32,6 +32,20 @@ export default function Library() {
         setAwaitLibrary(false);
     }
 
+    async function removeBook(book) {
+        let updatedArray = library.filter(item => item.id !== book.id)
+        setLibrary(updatedArray);
+        const newBook = {'data': book};
+        const { data, error } = await supabase
+            .from('book_table')
+            .delete()
+            .match({ id: newBook.data.id });
+    }
+
+    (async function initialLoad() {
+        awaitLibrary ? await getLibrary() : null;
+    })()
+
     const addBookToLibrary = (book) => {
         setLibrary(library.concat(book));
         library[library.length] = book;
@@ -56,22 +70,6 @@ export default function Library() {
             })
         }
     }
-
-    async function removeBook(book) {
-        let updatedArray = library.filter(item => item.id !== book.id)
-        setLibrary(updatedArray);
-        const newBook = {'data': book};
-        const { data, error } = await supabase
-            .from('book_table')
-            .delete()
-            .match({ id: newBook.data.id });
-    }
-
-    (async function initialLoad() {
-        if (awaitLibrary === true) {
-            await getLibrary()
-        }
-    })()
 
     return(
         <main>
