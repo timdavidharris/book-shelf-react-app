@@ -66,8 +66,8 @@ export default function Library() {
         } else if (library.length === 0) {
             return <PlaceholderBook />
         } else {
-            return library.map((book, index) => {
-                return <Book key={index} book={book} updateLibrary={updateLibrary} removeBook={removeBook}/>
+            return library.map((book) => {
+                return <Book key={book.id} book={book} updateLibrary={updateLibrary} removeBook={removeBook}/>
             })
         }
     }
@@ -86,7 +86,7 @@ export default function Library() {
                 <AddBook library={library} addBookToLibrary={addBookToLibrary}/>
             </section>
             <section className='book-parent-div'>
-                {renderBooks()}
+                { renderBooks() }
             </section>
             <footer>
                 <GithubLink />
