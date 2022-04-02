@@ -6,7 +6,7 @@ export default function BookForm(props) {
     const handleSubmit = props.handleSubmit;
     const book = props.book;
 
-    const newBookReadStatus = () => {
+    const addOrEditBook = () => {
         if (props.addBookComponent === true) {
             return (
                 <label>
@@ -34,7 +34,7 @@ export default function BookForm(props) {
         <div className='modal'>
         <span className='close-btn' onClick={() => toggleFormDisplay()}>&times;</span>
         <form className='modal-content add-a-book-form' onSubmit={handleSubmit}>
-            { newBookReadStatus() }
+            { addOrEditBook() }
             <label>
                 Book Title
             <input 
