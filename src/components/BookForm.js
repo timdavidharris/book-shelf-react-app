@@ -72,7 +72,7 @@ export default function BookForm(props) {
             />
             </label>
             <button type='submit'>
-                ADD
+                { props.addBook ? "Add Book" : "Update Book" }
             </button>
         </form>
         </div>
