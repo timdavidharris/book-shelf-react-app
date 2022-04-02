@@ -43,7 +43,9 @@ export default function Library() {
     }
 
     (async function initialLoad() {
-        awaitLibrary ? await getLibrary() : null;
+         if (awaitLibrary) {
+            getLibrary();
+         }
     })()
 
     const addBookToLibrary = (book) => {
