@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
+import BookForm from './BookForm';
 
 export default function BookCard(props) {
     const [book, setBook] = useState(props.book);
-    const [displayEditForm, setDisplayEditForm] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState("hide");
+    const [formDisplay, setFormDisplay] = useState(false);
+    const addBook = false;
     const updateLibrary = props.updateLibrary;
     const removeBook = props.removeBook;
+
+    const toggleFormDisplay = () => {
+        if (formDisplay === false) {
+            setFormDisplay(true);
+        } else {
+            setFormDisplay(false);
+        }
+    }
 
     const handleChange = (e) => {
         setBook({...book, [e.target.name]: e.target.value});
@@ -16,9 +26,33 @@ export default function BookCard(props) {
         setConfirmDelete("hide");
     }
 
+    const renderDeleteBtns = () => {
+        if (confirmDelete === "hide") {
+            return (
+                <button onClick={() => setConfirmDelete("show")}>
+                    DELETE BOOK
+                </button>
+            )
+        } else {
+            return (
+                <div className='modal'>
+                    <span className='close-btn' onClick={() => setConfirmDelete("hide")}>&times;</span>
+                    <div className='modal-content'>
+                        <button onClick={() => removeBookAndHide()}>
+                            YES, DELETE BOOK
+                        </button>
+                        <br />
+                        <button onClick={() => setConfirmDelete("hide")}>
+                            NO, do NOT delete Book
+                        </button>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        setDisplayEditForm(false);
         updateLibrary(book);
     }
 
@@ -39,65 +73,13 @@ export default function BookCard(props) {
             <button onClick={updateReadStatus}>
                 Change Read Status
             </button>
-            <button onClick={() => setDisplayEditForm(true)}>
+            <button onClick={() => setFormDisplay(true)}>
                 Edit Book
             </button>
-            { confirmDelete === "hide" ? 
-                <button onClick={() => setConfirmDelete("show")}>
-                DELETE BOOK
-                </button>
-                :
-                <div className='modal'>
-                    <span className='close-btn' onClick={() => setConfirmDelete("hide")}>&times;</span>
-                    <div className='modal-content'>
-                        <button onClick={() => removeBookAndHide()}>
-                            YES, DELETE BOOK
-                        </button>
-                        <br />
-                        <button onClick={() => setConfirmDelete("hide")}>
-                            NO, do NOT delete Book
-                        </button>
-                    </div>
-                </div>
-                }
-            {displayEditForm === false ? null :
-                <div className='modal'>
-                <span className='close-btn' onClick={() => setDisplayEditForm(false)}>&times;</span>
-                <form className='modal-content add-a-book-form' onSubmit={handleSubmit}>
-                <label>
-                    Book Title
-                <input 
-                    name="title"
-                    type="text"
-                    value={book.title}
-                    onChange={handleChange}
-                />
-                </label>
-                <label>
-                    Author
-                <input
-                    name="author"
-                    type="text"
-                    value={book.author}
-                    onChange={handleChange}
-                />
-                </label>
-                <label>
-                    Number of Pages
-                <input
-                    name="pages"
-                    type="number"
-                    value={book.pages}
-                    onChange={handleChange}
-                />
-                </label>
-                <br />
-                <button type='submit'>
-                    EDIT
-                </button>
-            </form>
+            { renderDeleteBtns() }
+            <div>
+                { formDisplay === false ? null : <BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBook={addBook} toggleFormDisplay={toggleFormDisplay}/>}
             </div>
-            }
         </div>
     )
 }
