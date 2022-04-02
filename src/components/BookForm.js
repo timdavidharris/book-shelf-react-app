@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 
 export default function BookForm(props) {
     const toggleFormDisplay = props.toggleFormDisplay;
+    const addBookComponent = props.addBookComponent;
     const handleChange = props.handleChange;
     const handleSubmit = props.handleSubmit;
     const book = props.book;
 
     const addOrEditBook = () => {
-        if (props.addBookComponent === true) {
+        if (addBookComponent === true) {
             return (
                 <label>
                 This book is:
@@ -66,7 +67,7 @@ export default function BookForm(props) {
             />
             </label>
             <button type='submit'>
-                { props.addBookComponent ? "Add Book" : "Update Book" }
+                { addBookComponent ? "Add Book" : "Update Book" }
             </button>
         </form>
         </div>
