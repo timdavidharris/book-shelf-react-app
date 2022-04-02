@@ -8,7 +8,7 @@ export default function NewBook(props) {
     const [formDisplay, setFormDisplay] = useState(false);
     const [book, setBook] = useState({title: "", author: "", pages: "", bookRead: "read", id: randomNumber()});
     const addBookToLibrary = props.addBookToLibrary;
-    const addBook = true;
+    const addBookComponent = true;
 
     const toggleFormDisplay = () => {
         if (formDisplay === false) {
@@ -35,7 +35,7 @@ export default function NewBook(props) {
                 Add A Book
             </button>
             <div>
-            { formDisplay === false ? null : <BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBook={addBook} toggleFormDisplay={toggleFormDisplay}/>}
+            { formDisplay === false ? null : <BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBookComponent={addBookComponent} toggleFormDisplay={toggleFormDisplay}/>}
             </div>
         </div>
     )

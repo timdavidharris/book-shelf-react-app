@@ -5,7 +5,7 @@ export default function BookCard(props) {
     const [book, setBook] = useState(props.book);
     const [confirmDelete, setConfirmDelete] = useState("hide");
     const [formDisplay, setFormDisplay] = useState(false);
-    const addBook = false;
+    const addBookComponent = false;
     const updateLibrary = props.updateLibrary;
     const removeBook = props.removeBook;
 
@@ -79,7 +79,7 @@ export default function BookCard(props) {
             </button>
             { renderDeleteBtns() }
             <div>
-                { formDisplay === false ? null : <BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBook={addBook} toggleFormDisplay={toggleFormDisplay}/>}
+                { formDisplay === false ? null : <BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBookComponent={addBookComponent} toggleFormDisplay={toggleFormDisplay}/>}
             </div>
         </div>
     )

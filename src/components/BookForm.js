@@ -7,7 +7,7 @@ export default function BookForm(props) {
     const book = props.book;
 
     const newBookReadStatus = () => {
-        if (props.addBook === true) {
+        if (props.addBookComponent === true) {
             return (
                 <label>
                 This book is:
@@ -72,7 +72,7 @@ export default function BookForm(props) {
             />
             </label>
             <button type='submit'>
-                { props.addBook ? "Add Book" : "Update Book" }
+                { props.addBookComponent ? "Add Book" : "Update Book" }
             </button>
         </form>
         </div>
