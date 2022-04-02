@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import BookForm from './BookForm';
 
-// For Reference:
-// https://medium.com/nerd-for-tech/how-to-build-forms-with-multiple-input-fields-using-react-hooks-677da2b851aa
-
 export default function NewBook(props) {
     const randomNumber = () => {
         return Math.floor(Math.random() * 100000);
