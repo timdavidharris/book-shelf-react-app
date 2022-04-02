@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js'
-import { render } from '@testing-library/react';
 import React, { useState } from 'react'
 import AddBook from './AddBook';
 import Book from './Book';
