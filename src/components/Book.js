@@ -72,7 +72,7 @@ export default function BookCard(props) {
                 Edit Book
             </button>
             <button onClick={() => setConfirmDelete("show")}>
-                    DELETE BOOK
+                DELETE BOOK
             </button>
             { renderDeleteBtns() }
             <div>
