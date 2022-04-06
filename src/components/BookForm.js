@@ -12,19 +12,19 @@ export default function BookForm(props) {
             return (
                 <label>
                 This book is:
-                <div>
-                    <select 
-                        name="bookRead"
-                        value={book.bookRead}
-                        onChange={handleChange}
-                        required
-                    >
-                    <option value="">--select one--</option>
-                    <option value={"read"}>read</option>
-                    <option value={"unread"}>unread</option>
-                    </select>
-                </div>
-            </label>
+                    <div>
+                        <select 
+                            name="bookRead"
+                            value={book.bookRead}
+                            onChange={handleChange}
+                            required
+                        >
+                        <option value="">--select one--</option>
+                        <option value={"read"}>read</option>
+                        <option value={"unread"}>unread</option>
+                        </select>
+                    </div>
+                </label>
             )
         } else {
             return (<div><label><strong>Edit Book</strong></label></div>)
