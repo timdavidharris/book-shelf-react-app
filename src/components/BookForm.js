@@ -27,7 +27,7 @@ export default function BookForm(props) {
             </label>
             )
         } else {
-            return (<div><label>Edit Book</label></div>)
+            return (<div><label><strong>Edit Book</strong></label></div>)
         }
     }
 
