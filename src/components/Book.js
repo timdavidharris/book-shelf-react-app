@@ -27,13 +27,7 @@ export default function BookCard(props) {
     }
 
     const renderDeleteBtns = () => {
-        if (confirmDelete === "hide") {
-            return (
-                <button onClick={() => setConfirmDelete("show")}>
-                    DELETE BOOK
-                </button>
-            )
-        } else {
+        if (confirmDelete === "show") {
             return (
                 <div className='modal'>
                     <span className='close-btn' onClick={() => setConfirmDelete("hide")}>&times;</span>
@@ -76,6 +70,9 @@ export default function BookCard(props) {
             </button>
             <button onClick={() => setFormDisplay(true)}>
                 Edit Book
+            </button>
+            <button onClick={() => setConfirmDelete("show")}>
+                    DELETE BOOK
             </button>
             { renderDeleteBtns() }
             <div>
