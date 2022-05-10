@@ -18,6 +18,10 @@ export default function NewBook(props) {
         }
     }
 
+    const renderForm = () => {
+        return (<BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBookComponent={addBookComponent} toggleFormDisplay={toggleFormDisplay}/>)
+    }
+
     const handleChange = (e) => {
         setBook({...book, [e.target.name]: e.target.value});
     }
@@ -35,7 +39,7 @@ export default function NewBook(props) {
                 Add A Book
             </button>
             <div>
-            { formDisplay === false ? null : <BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBookComponent={addBookComponent} toggleFormDisplay={toggleFormDisplay}/>}
+            { formDisplay === false ? null : renderForm() }
             </div>
         </div>
     )

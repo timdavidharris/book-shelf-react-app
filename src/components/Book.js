@@ -45,6 +45,10 @@ export default function BookCard(props) {
         }
     }
 
+    const renderForm = () => {
+        return (<BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBookComponent={addBookComponent} toggleFormDisplay={toggleFormDisplay}/>)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         toggleFormDisplay();
@@ -76,7 +80,7 @@ export default function BookCard(props) {
             </button>
             { renderDeleteBtns() }
             <div>
-                { formDisplay === false ? null : <BookForm handleChange={handleChange} handleSubmit={handleSubmit} book={book} addBookComponent={addBookComponent} toggleFormDisplay={toggleFormDisplay}/>}
+                { formDisplay === false ? null : renderForm() }
             </div>
         </div>
     )
