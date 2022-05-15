@@ -87,9 +87,9 @@ export default function Library() {
             <section className='book-parent-div'>
                 { renderBooks() }
             </section>
-            <footer>
+            <section>
                 <GithubLink />
-            </footer>
+            </section>
         </main>
     );
 }
