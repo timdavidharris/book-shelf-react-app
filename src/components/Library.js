@@ -73,6 +73,7 @@ export default function Library() {
 
     return(
         <main>
+            <div id='content-wrap'>
             <header>
                 <h1>
                     Book Shelf
@@ -87,6 +88,7 @@ export default function Library() {
             <section className='book-parent-div'>
                 { renderBooks() }
             </section>
+            </div>
             <section>
                 <GithubLink />
             </section>

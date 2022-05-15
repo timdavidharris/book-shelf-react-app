@@ -77,8 +77,13 @@ h1 {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 4rem;
+  height: 1.5em;
 }
+
+#content-wrap {
+  padding-bottom: 1.5em; 
+}
+
 
 /* modal styling */
 /* Thank you: https://medium.com/@nerdplusdog/a-how-to-guide-for-modal-boxes-with-javascript-html-and-css-6a49d063987e */
