@@ -17,6 +17,17 @@ form {
 button {
   margin-top: 1em;
   border-radius: 5px;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: gray; 
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: red; 
+  color: white;
 }
 
 h1 {

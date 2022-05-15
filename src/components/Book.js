@@ -32,7 +32,7 @@ export default function BookCard(props) {
                 <div className='modal'>
                     <span className='close-btn' onClick={() => setConfirmDelete("hide")}>&times;</span>
                     <div className='modal-content'>
-                        <button onClick={() => removeBookAndHide()}>
+                        <button className='delete-btn' onClick={() => removeBookAndHide()}>
                             YES, DELETE BOOK
                         </button>
                         <br />
@@ -75,7 +75,7 @@ export default function BookCard(props) {
             <button onClick={() => setFormDisplay(true)}>
                 Edit Book
             </button>
-            <button onClick={() => setConfirmDelete("show")}>
+            <button className='delete-btn' onClick={() => setConfirmDelete("show")}>
                 DELETE BOOK
             </button>
             { renderDeleteBtns() }
