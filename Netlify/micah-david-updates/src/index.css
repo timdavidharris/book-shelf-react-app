@@ -1,6 +1,8 @@
 body {
   margin: 0;
   text-align: center;
+  background: #64a5ff;
+  color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,4 +13,39 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  margin-top: 5em;
+}
+
+.update-parent-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.update-child-div {
+  background: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 1em 1em 1em;
+  margin: .75em .75em .75em .75em;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  border-color: #000;
+  max-width: 16em;
+  border-radius: 10px;
+}
+
+.form-and-card-div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

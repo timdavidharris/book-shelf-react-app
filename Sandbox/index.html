@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let itemData = [
+  { category: 'fruit',  itemName: 'apple', onSale: false },
+  { category: 'canned', itemName: 'beans', onSale: false },
+  { category: 'canned', itemName: 'corn',  onSale: true  },
+  { category: 'frozen', itemName: 'pizza', onSale: false },
+  { category: 'fruit',  itemName: 'melon', onSale: true  },
+  { category: 'canned', itemName: 'soup',  onSale: false },
+];
+
+let otherItemData = [
+  { category: 'dairy', itemName: 'milk'},
+  { category: 'dairy', itemName: 'cheese'}
+]
+
+function organizeItems(items) {
+  let obj = {};
+  let catList = items.map(item => item.category);
+  let list = [...new Set(catList)];
+  for (let i = 0; i < list.length; i++) {
+    filterObjs(items, i, list, obj)
+  }
+}
+
+function filterObjs(items, num, list, obj) {
+  let arr = items.filter(item => item.category === list[num]);
+  arr = arr.map(item => item.itemName + checkBoolean(item));
+  buildObj(arr, list, num, obj)
+}
+
+function buildObj(arr, list, num, obj) {
+  let listNum = list[num]
+  obj[listNum] = arr;
+  if (list.length - 1 === num) {
+    console.log(obj);
+    return obj;
+  }
+}
+
+function checkBoolean(item) {
+  if (item.onSale) {
+    return '$'
+  }
+  else {
+    return '';
+  }
+}
+
+// organizeItems(itemData);
+organizeItems(otherItemData);
+
+    </script>
+</body>
+</html>
